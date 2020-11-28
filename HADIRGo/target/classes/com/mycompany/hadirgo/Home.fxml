@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.Home">
-  <children>
-    <AnchorPane fx:id="home" maxHeight="-1.0" maxWidth="-1.0" prefHeight="524.0" prefWidth="867.0" VBox.vgrow="ALWAYS">
-      <children>
-            <ImageView fitHeight="430.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="239.0" fitWidth="272.0" layoutX="323.0" layoutY="99.0" preserveRatio="true">
-               <image>
-                  <Image url="@hadirgo!.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="422.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hadir Go! Project v.1.0" wrappingWidth="213.908203125">
-               <font>
-                  <Font name="Courier New Italic" size="15.0" />
-               </font>
-            </Text>
-            <Button fx:id="login" layoutX="415.0" layoutY="308.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="100.0" text="Start Now" textOverrun="WORD_ELLIPSIS" />
-            <Group layoutX="6.0" layoutY="322.0">
-               <children>
-                  <ImageView fitHeight="33.0" fitWidth="141.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@putih.PNG" />
-                     </image>
-                  </ImageView>
-                  <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kelompok RPL Go!">
-                     <font>
-                        <Font name="Lato Bold Italic" size="17.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Group>
-            <ImageView fitHeight="78.0" fitWidth="345.0" layoutX="6.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="420.0" minWidth="630.0" prefHeight="425.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.Home">
+   <children>
+      <AnchorPane layoutX="236.0" layoutY="34.0" prefHeight="378.0" prefWidth="365.0" style="-fx-background-color: linear-gradient(to right, #6bb6d1, #6ebfd6, #72c7db, #77d0df, #7dd8e3, #7ddee6, #7de3e9, #7de9eb, #76eeed, #6ff2ef, #67f7f0, #5ffbf1);; -fx-background-radius: 1em;">
+         <children>
+            <Label layoutX="56.0" layoutY="30.0" prefHeight="49.0" prefWidth="133.0" text="Sign In" textFill="#5838c3" AnchorPane.leftAnchor="56.0" />
+            <ImageView fitHeight="108.0" fitWidth="304.0" layoutX="55.0" layoutY="330.7733154296875" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.37335205078125" AnchorPane.rightAnchor="6.0">
                <image>
                   <Image url="@namateam.PNG" />
                </image>
             </ImageView>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+            <Text fontSmoothingType="LCD" layoutX="59.303466796875" layoutY="324.7999458312988" strokeType="OUTSIDE" strokeWidth="0.0" text="Kelompok RPL Go!" AnchorPane.bottomAnchor="70.57905387878418" AnchorPane.rightAnchor="172.85853576660156" />
+            <JFXButton fx:id="signInbtn" buttonType="RAISED" layoutX="56.0" layoutY="215.0" onAction="#cekLogin" prefHeight="29.0" prefWidth="90.0" ripplerFill="#3d88ff" style="-fx-background-color: #1b55ff; -fx-background-radius: 0.5em;" text="Sign In" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="56.0" />
+            <TextField layoutX="56.0" layoutY="102.0" prefHeight="25.0" prefWidth="281.0" promptText="Userneame" />
+            <PasswordField layoutX="55.0" layoutY="157.0" prefHeight="25.0" prefWidth="281.0" promptText="Password" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="24.0" layoutY="23.0" prefHeight="399.0" prefWidth="241.0" style="-fx-background-color: linear-gradient(to top, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);; -fx-background-radius: 1em;">
+         <children>
+            <ImageView fitHeight="227.0" fitWidth="228.0" layoutX="8.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@hadirgo!.png" />
+               </image>
+            </ImageView>
+            <Text layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hadir Go! Project v.1.0" wrappingWidth="213.908203125" AnchorPane.bottomAnchor="2.49560546875" AnchorPane.leftAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

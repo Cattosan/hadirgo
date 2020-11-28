@@ -1,31 +1,53 @@
 package com.mycompany.hadirgo;
-import java.io.IOException;
-//import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-public class Home implements Initializable {
+public class Home {
+    
+    private static String usr;
+    private String pwd;
+    private boolean status = false;
+    
     
     @FXML
-    private AnchorPane home;
+    private TextField username;
+    @FXML
+    private PasswordField password;
+//    @FXML
+//    //private void switchToLogin(ActionEvent event) throws IOException {
+//    private void switchToUser(ActionEvent event) throws IOException {
+//        //JButton login = new JButton;
+//        //App.setRoot("FormLogin");
+//        App.setRoot("user");
+//    }
     
     @FXML
-    private JFXButton signInbtn;
-
-    @FXML
-    //private void switchToLogin(ActionEvent event) throws IOException {
-    private void switchToUser(ActionEvent event) throws IOException {
-        //JButton login = new JButton;
-        //App.setRoot("FormLogin");
-        App.setRoot("user");
+    private void cekLogin(ActionEvent event) throws IOException{
+        usr = username.getText();
+        pwd = password.getText();
+        status = HadirGoDb.validate(usr, pwd);
+        
+        if(status == true){
+            App.setRoot("user");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("User tidak ketemu!");
+            alert.showAndWait();
+        }
     }
 
+   
 
     /*
     @FXML
@@ -35,9 +57,5 @@ public class Home implements Initializable {
         }
     }
     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
