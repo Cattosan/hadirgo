@@ -12,10 +12,9 @@ import javafx.scene.control.TextField;
 
 public class Home {
     
-    private static String usr;
-    private String pwd;
+    private String usr = "";
+    private String pwd = "";
     private boolean status = false;
-    
     
     @FXML
     private TextField username;
