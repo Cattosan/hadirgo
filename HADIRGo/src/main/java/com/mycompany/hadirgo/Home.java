@@ -1,9 +1,5 @@
 package com.mycompany.hadirgo;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -48,14 +44,8 @@ public class Home {
     }
 
    
-
-    /*
-    @FXML
-    private void handleButtonAction(MouseEvent event){
-        if(event.getTarget() == login){
-            register.setVisible(true);
-        }
+     public static String getUsername(){
+        return usr;
     }
-    */
     
 }

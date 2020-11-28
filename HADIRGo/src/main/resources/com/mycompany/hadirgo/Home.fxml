@@ -22,6 +22,8 @@
             <Text fontSmoothingType="LCD" layoutX="59.303466796875" layoutY="324.7999458312988" strokeType="OUTSIDE" strokeWidth="0.0" text="Kelompok RPL Go!" AnchorPane.bottomAnchor="70.57905387878418" AnchorPane.rightAnchor="172.85853576660156" />
             <TextField layoutX="56.0" layoutY="102.0" prefHeight="25.0" prefWidth="281.0" promptText="Userneame" />
             <PasswordField layoutX="55.0" layoutY="157.0" prefHeight="25.0" prefWidth="281.0" promptText="Password" />
+            <TextField fx:id="username" layoutX="56.0" layoutY="102.0" prefHeight="25.0" prefWidth="281.0" promptText="Userneame" />
+            <PasswordField fx:id="password" layoutX="55.0" layoutY="157.0" prefHeight="25.0" prefWidth="281.0" promptText="Password" />
             <Button layoutX="56.0" layoutY="218.0" mnemonicParsing="false" onAction="#cekLogin" text="Button" />
          </children>
       </AnchorPane>

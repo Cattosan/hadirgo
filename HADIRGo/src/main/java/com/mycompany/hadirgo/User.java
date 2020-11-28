@@ -23,6 +23,6 @@ public class User {
     }
     @FXML
     public void initialize(){
-        labeluser.setText(MenuLogin.getUsername());
+        labeluser.setText(Home.getUsername());
     }    
 }
