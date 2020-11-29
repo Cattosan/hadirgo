@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("hadirgo2.png")));
         stage.setTitle("Hadir Go!");
-        scene = new Scene(loadFXML("Home"), 640, 425);
+        scene = new Scene(loadFXML("user"), 640, 425);
         stage.setScene(scene);
         stage.show();
     }

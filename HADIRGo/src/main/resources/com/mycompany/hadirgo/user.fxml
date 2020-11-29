@@ -23,7 +23,7 @@
                      </image>
                   </ImageView>
                   <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="33.0" layoutY="350.0" onAction="#backToWelcome" prefHeight="32.0" prefWidth="73.0" text="Log Out" textAlignment="CENTER" />
-                  <JFXButton fx:id="ubahpass" layoutX="17.0" layoutY="103.0" onAction="#kesinilo" text="Ubah Password" />
+                  <JFXButton fx:id="ubahpass" layoutX="17.0" layoutY="103.0" onAction="#ubahPassword" text="Ubah Password" />
                   <JFXButton fx:id="tambahkls" layoutX="17.0" layoutY="139.0" prefHeight="32.0" prefWidth="109.0" text="Tambah Kelas" />
                   <JFXButton fx:id="editkls" layoutX="17.0" layoutY="174.0" prefHeight="32.0" prefWidth="109.0" text="Edit Kelas" />
                   <JFXButton fx:id="tambahdsn" layoutX="17.0" layoutY="210.0" prefHeight="32.0" prefWidth="109.0" text="Tambah Dosen" />
@@ -35,7 +35,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="404.0" prefWidth="504.0">
                      <children>
-                        <ListView layoutX="8.0" layoutY="1.0" prefHeight="399.0" prefWidth="494.0" />
+                        <ListView fx:id="ListDaftarKelas" onMouseClicked="#handle" layoutY="-2.0" prefHeight="402.0" prefWidth="502.0" />
                      </children>
                   </AnchorPane>
               </content>
