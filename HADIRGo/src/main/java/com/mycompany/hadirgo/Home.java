@@ -12,9 +12,9 @@ import javafx.scene.control.TextField;
 
 public class Home {
     
-    private String usr = "";
-    private String pwd = "";
-    private boolean status = false;
+    public static String usr;
+    public static String pwd;
+    private static boolean status = false;
     
     @FXML
     private TextField username;
@@ -30,12 +30,18 @@ public class Home {
     
     @FXML
     private void cekLogin(ActionEvent event) throws IOException{
-        usr = username.getText();
-        pwd = password.getText();
+        usr = username.getText().trim();
+        pwd = password.getText().trim();
         status = HadirGoDb.validate(usr, pwd);
         
         if(status == true){
+            status = false;
             App.setRoot("user");
+//            if(HadirGoDb.isAdmin(usr)){
+//                App.setRoot("admin");
+//            } else{
+//                App.setRoot("user");
+//            }
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
