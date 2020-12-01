@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 
 public class User implements Initializable{
     private ObservableList<String> daftarKelas;
+    public static String namaKelas;
 
     @FXML
     private Label labeluser;
@@ -73,7 +74,13 @@ public class User implements Initializable{
         ListDaftarKelas.setItems(daftarKelas);
     }
     @FXML
-    public void handle(MouseEvent event) {
+    public void handle(MouseEvent event) throws IOException {
         System.out.println(ListDaftarKelas.getSelectionModel().getSelectedItem());
+        namaKelas = ListDaftarKelas.getSelectionModel().getSelectedItem();
+        App.setRoot("Presensi");
+    }
+    
+    static String namaMatkul(){
+        return namaKelas;
     }
 }

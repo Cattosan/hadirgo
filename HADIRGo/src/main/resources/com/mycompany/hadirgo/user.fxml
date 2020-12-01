@@ -22,6 +22,7 @@
                         <Image url="@user-removebg-preview.png" />
                      </image>
                   </ImageView>
+                  
                   <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="33.0" layoutY="350.0" onAction="#backToWelcome" prefHeight="32.0" prefWidth="73.0" text="Log Out" textAlignment="CENTER" />
                   <JFXButton fx:id="ubahpass" layoutX="17.0" layoutY="103.0" onAction="#ubahPassword" text="Ubah Password" />
                   <JFXButton fx:id="tambahkls" layoutX="17.0" layoutY="139.0" prefHeight="32.0" prefWidth="109.0" text="Tambah Kelas" />

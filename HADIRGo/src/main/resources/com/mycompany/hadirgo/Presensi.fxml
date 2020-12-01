@@ -5,30 +5,48 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.PresensiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.PresensiController">
    <children>
-      <SplitPane dividerPositions="0.2376237623762376" orientation="VERTICAL" prefHeight="400.0" prefWidth="606.0">
+      <SplitPane dividerPositions="0.2376237623762376" orientation="VERTICAL" prefHeight="425.0" prefWidth="640.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Text layoutX="95.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mata Kuliah" />
-                  <ComboBox layoutX="421.0" layoutY="34.0" prefWidth="150.0" />
-                  <JFXButton layoutX="21.0" layoutY="34.0" text="Kembali" />
+                  <Text fx:id="inimatkul" layoutX="81.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mata Kuliah" />
+                  <ComboBox layoutX="467.0" layoutY="35.0" prefWidth="150.0" />
+                  <JFXButton layoutX="23.0" layoutY="29.0" prefHeight="37.0" prefWidth="30.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="21.0">
+                           <image>
+                              <Image url="@backIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton layoutX="398.0" layoutY="18.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="45.0">
+                           <image>
+                              <Image url="@Journal.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView prefHeight="300.0" prefWidth="604.0">
+                  <TableView fx:id="tabPresensi" prefHeight="325.0" prefWidth="640.0">
                     <columns>
-                      <TableColumn prefWidth="34.0" text="No." />
-                        <TableColumn prefWidth="75.0" text="Foto" />
-                      <TableColumn prefWidth="233.0" text="Nama" />
-                        <TableColumn minWidth="0.0" prefWidth="114.0" text="NIM" />
-                        <TableColumn prefWidth="108.0" text="Presensi" />
-                        <TableColumn prefWidth="39.0" text="Pin" />
+                      <TableColumn fx:id="nomor" prefWidth="34.0" text="No." />
+                        <TableColumn fx:id="foto" prefWidth="127.0" text="Foto" />
+                      <TableColumn fx:id="namaMhs" prefWidth="235.0" text="Nama" />
+                        <TableColumn fx:id="nim" minWidth="0.0" prefWidth="106.0" text="NIM" />
+                        <TableColumn fx:id="presensi" prefWidth="93.0" text="Presensi" />
+                        <TableColumn fx:id="pin" prefWidth="44.0" text="Pin" />
                     </columns>
                   </TableView>
                </children>
