@@ -19,3 +19,13 @@ HADIRGo/target/maven-status/maven-compiler-plugin/compile/default-compile/create
 HADIRGo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 HADIRGo/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
 HADIRGo/target/test-classes/.netbeans_automatic_build
+HADIRGo/admin.db
+HADIRGo/target/classes/com/mycompany/hadirgo/App.class
+HADIRGo/target/classes/com/mycompany/hadirgo/HadirGoDb.class
+HADIRGo/target/classes/com/mycompany/hadirgo/Home.class
+HADIRGo/target/classes/com/mycompany/hadirgo/MenuLogin.class
+HADIRGo/target/classes/com/mycompany/hadirgo/User.class
+HADIRGo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+HADIRGo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+HADIRGo/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+HADIRGo/target/test-classes/.netbeans_automatic_build

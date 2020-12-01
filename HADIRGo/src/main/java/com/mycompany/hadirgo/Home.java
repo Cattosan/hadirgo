@@ -16,7 +16,6 @@ public class Home {
     public static String pwd;
     private static boolean status = false;
     
-    
     @FXML
     private TextField username;
     @FXML
