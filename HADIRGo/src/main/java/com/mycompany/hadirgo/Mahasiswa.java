@@ -22,26 +22,16 @@ public class Mahasiswa {
         this.foto = foto;
     }
 
-    /**
-     * @return the nim
-     */
-    public String getNim() {
-        return nim;
-    }
-
-    /**
-     * @return the nama
-     */
-    public String getNama() {
+    public String getNama(){
         return nama;
     }
 
-    /**
-     * @return the foto
-     */
-    public String getFoto() {
+    public String getNim(){
+        return nim;
+    }
+
+    public String getFoto(){
         return foto;
     }
-    
-    
+
 }
