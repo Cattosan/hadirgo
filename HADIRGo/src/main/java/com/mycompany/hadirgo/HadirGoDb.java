@@ -12,29 +12,6 @@ public class HadirGoDb {
     //insert data juga dilakukan pada fungsi itu
     private static final String URL = "jdbc:sqlite:admin.db";
     
-    //membuat tabel baru jika belum ada
-    //isAdmin adalah state yang digunakan untuk membedakan akun dosen dan admin
-    //0 = dosen
-    //1 = admin
-    private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS account (\n"
-                                                + " id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n"
-                                                + " username TEXT NOT NULL,\n"
-                                                + " password TEXT NOT NULL,\n"
-                                                + " isAdmin BIT NOT NULL,\n"
-                                                + " id_dosen VARCHAR(3),"
-                                                + " FOREIGN KEY(id_dosen)\n"
-                                                + " REFERENCES dosen (id_dosen)\n"
-                                                + "     ON UPDATE CASCADE\n"
-                                                + "     ON DELETE CASCADE\n"
-                                                + ");";
-    
-    //insert data dosen dan admin untuk login pertama kali
-    //username dan password akun dosen = dosen, dosen
-    //akun admin = admin, admin 
-    private static final String INSERT_ACCOUNT_SQL = "INSERT INTO account (username, password, isAdmin, id_dosen)\n"
-                                                     + " VALUES('admin', 'admin', 1, ''),"
-                                                     + " ('dosen', 'dosen', 0, 'A01');";
-    
     //query untuk validasi akun waktu login di fungsi validate()
     private static final String VALIDATE_QUERY = "SELECT * FROM account WHERE \n"
                                                   + "  username = ? AND password = ?;";
@@ -43,26 +20,6 @@ public class HadirGoDb {
     //cek akun apakah admin atau dosen
     private static final String SEARCH_QUERY = "SELECT * FROM account WHERE \n"
                                                   + "  username = ?";
-    
-    //state untuk mengecek apakah db sudah dibuat dengan akun admin dan dosen
-    //true jika telah dibuat dengan fungsi createAndInsert()
-    private static boolean isAccountInserted = false;
-
-    //membuat admin.db dan akun dosen dan admin
-    private static void createInitDb(){
-        try{
-            Class.forName("org.sqlite.JDBC");
-            try (Connection conn = DriverManager.getConnection(URL); Statement statement = conn.createStatement()) {
-                statement.execute(CREATE_TABLE_SQL);
-                statement.execute(INSERT_ACCOUNT_SQL);
-                isAccountInserted = true;
-                statement.close();
-                conn.close();
-            }
-        } catch(SQLException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-    }
 
     //untuk saat ini akun baru yang dibuat hanya akun dengan role dosen
     public static void createNewAccount(String username, String password){
@@ -86,10 +43,6 @@ public class HadirGoDb {
 
     //fungsi untuk validasi login
     public static boolean validate(String username, String password){
-        if(!isAccountInserted){
-            createInitDb();
-        }
-
         try{
             //mengakses db
             Class.forName("org.sqlite.JDBC");
