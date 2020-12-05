@@ -1,0 +1,6 @@
+.fill-btn {
+-fx-graphic: url("/startpower-removebg-preview.png");
+-fx-background-color: none;
+-fx-opacity: none;
+-fx-border: none;
+}

@@ -22,7 +22,7 @@ public class KelasDb {
     
     private static boolean isDataExist = false;
     
-    //fungsi untuk mengembalikan semua data kelas berdasarkan akun yang login( admin atau dosen)
+    //fungsi untuk mengembalikan semua data kelas berdasarkan akun yang login(admin atau dosen)
     public static ArrayList<Kelas> showKelas(String username){
         //container untuk menyimpan data kelas yang akan di-return
         var kelas = new ArrayList<Kelas>();
@@ -64,8 +64,7 @@ public class KelasDb {
                     jam = resultSet.getByte("jam");
                     menit = resultSet.getByte("menit");
                     
-                    if(isAdmin)
-                        kelas.add(new Kelas(kodeKelas, namaKelas, jam, menit));
+                    kelas.add(new Kelas(kodeKelas, namaKelas, jam, menit));
                 }
                 return kelas;
             }

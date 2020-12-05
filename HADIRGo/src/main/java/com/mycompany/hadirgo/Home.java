@@ -3,7 +3,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -11,10 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class Home {
-    
     public static String usr;
     public static String pwd;
-    private static boolean status = false;
+    private boolean status = false;
     
     @FXML
     private TextField username;
@@ -30,29 +28,49 @@ public class Home {
     
     @FXML
     private void cekLogin(ActionEvent event) throws IOException{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         usr = username.getText().trim();
         pwd = password.getText().trim();
         status = HadirGoDb.validate(usr, pwd);
         
         if(status == true){
             status = false;
-            App.setRoot("user");
-//            if(HadirGoDb.isAdmin(usr)){
-//                App.setRoot("admin");
-//            } else{
-//                App.setRoot("user");
-//            }
+//            App.setRoot("Admin");
+            if(HadirGoDb.isAdmin(usr)){
+                App.setRoot("Admin");
+            } else{
+                App.setRoot("Dosen");
+            }
         }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        
+        else if(usr.equals("")|| pwd.equals("")){
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("User tidak ketemu!");
+            alert.setContentText("Username atau Password tidak boleh kosong ヾ(≧▽≦*)o!");
+            alert.showAndWait();
+        }
+        
+        else{
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("User tidak ketemu ＞﹏＜!");
             alert.showAndWait();
         }
     }
+    
+    public static String getpwd(){
+        return pwd;
+    }
 
-   
+    public static String getuser(){
+        return usr;
+    }
+    
+    @FXML
+    private void exitprogram(){
+        System.exit(0);
+    }
+    
 
     /*
     @FXML

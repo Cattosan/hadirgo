@@ -19,7 +19,7 @@
                      <graphic>
                         <ImageView fitHeight="54.0" fitWidth="47.0">
                            <image>
-                              <Image url="@Journal.png" />
+                              <Image url="@/icons/Journal.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -30,7 +30,7 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="20.0">
                            <image>
-                              <Image url="@backIcon.png" />
+                              <Image url="@/icons/backIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>

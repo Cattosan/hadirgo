@@ -50,5 +50,7 @@ public class Kelas {
         return menit;
     }
     
-    
+    public String toString(){
+        return "[" + getKodeKelas() + "]  | " + getNamaKelas();
+    }
 }

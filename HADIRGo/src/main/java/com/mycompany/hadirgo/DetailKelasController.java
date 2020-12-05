@@ -20,7 +20,7 @@ public class DetailKelasController implements Initializable {
 
     @FXML
     private void user() throws IOException{
-        App.setRoot("User");
+        App.setRoot("Admin");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

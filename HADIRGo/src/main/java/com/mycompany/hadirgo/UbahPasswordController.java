@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 
 
 public class UbahPasswordController{
+    private String pwdCurrent;
     private String pwdLama;
     private String pwdBaru;
     private String confirmPwd;
@@ -26,11 +27,12 @@ public class UbahPasswordController{
     
     @FXML
     private void cekPassword(ActionEvent event) throws IOException{
-        pwdLama = passwordLama.getText().trim();
-        pwdBaru = passwordBaru.getText().trim();
+        pwdCurrent = Home.getpwd();
+        pwdLama=passwordLama.getText().trim();
+        pwdBaru=passwordBaru.getText().trim();
         confirmPwd = confirmPasswordBaru.getText().trim();
         
-        if(!pwdLama.equals(Home.pwd)){
+        if(!pwdLama.equals(pwdCurrent)){
             notifikasiError("Password lama yang diinputkan salah");
         }
         else if(pwdLama.equals(pwdBaru)){
@@ -38,7 +40,7 @@ public class UbahPasswordController{
         } else if(!pwdBaru.equals(confirmPwd)){
             notifikasiError("Konfirmasi password baru berbeda");
         } else{
-            HadirGoDb.editPassword(Home.usr, pwdBaru);
+            HadirGoDb.editPassword((Home.getuser()), pwdBaru);
             notifikasiBerhasil("Password berhasil diubah");
         }
     }
@@ -57,5 +59,15 @@ public class UbahPasswordController{
         alert.setHeaderText(null);
         alert.setContentText(isiNotif);
         alert.showAndWait();
+    }
+    
+    @FXML
+    private void backUser(ActionEvent event) throws IOException{
+        if(HadirGoDb.isAdmin(Home.getuser())){
+            App.setRoot("Admin");
+        }
+        else{
+            App.setRoot("Dosen");
+        }
     }
 }
