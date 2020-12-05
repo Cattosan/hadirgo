@@ -19,8 +19,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/hadirgo2.png")));
-        //stage.setTitle("Hadir Go!");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/hadirgo2.png")));
+        stage.setTitle("Hadir Go!");
         stage.initStyle(StageStyle.UNDECORATED);
         
         BorderPane root = new BorderPane();
