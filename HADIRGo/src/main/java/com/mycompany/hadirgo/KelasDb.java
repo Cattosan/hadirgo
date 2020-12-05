@@ -156,13 +156,15 @@ public class KelasDb {
     //fungsi untuk tampilan setelah memilih kelas
     //mengembalikan data mahasiswa yang enroll
     //belum complete, menampilkan semua mahasiswa untuk sementara
-    public static ArrayList<Mahasiswa> showDetailKelas(String username){
+    public static ArrayList<Mahasiswa> showDetailKelas(String kodeKelas){
         var mahasiswa = new ArrayList<Mahasiswa>();
-        String sql = "SELECT * FROM mahasiswa";
+        String sql = "SELECT * FROM mahasiswa where nim = ("
+                    + "     SELECT nim from enroll WHERE kodeKelas = ?);";
         try{
             Class.forName("org.sqlite.JDBC");
             try(Connection conn = DriverManager.getConnection(URL)){
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, kodeKelas);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 
                 while(resultSet.next()){
