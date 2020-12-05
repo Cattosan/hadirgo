@@ -10,10 +10,10 @@ package com.mycompany.hadirgo;
  * @author Akira Rafhael
  */
 public class Kelas {
-    public String kodeKelas;
-    public String namaKelas;
-    public byte jam;
-    public byte menit;
+    private String kodeKelas;
+    private String namaKelas;
+    private byte jam;
+    private byte menit;
     
     Kelas(String kodeKelas, String namaKelas, byte jam, byte menit){
         this.kodeKelas = kodeKelas;
@@ -21,4 +21,34 @@ public class Kelas {
         this.jam = jam;
         this.menit = menit;
     }
+
+    /**
+     * @return the kodeKelas
+     */
+    public String getKodeKelas() {
+        return kodeKelas;
+    }
+
+    /**
+     * @return the namaKelas
+     */
+    public String getNamaKelas() {
+        return namaKelas;
+    }
+
+    /**
+     * @return the jam
+     */
+    public byte getJam() {
+        return jam;
+    }
+
+    /**
+     * @return the menit
+     */
+    public byte getMenit() {
+        return menit;
+    }
+    
+    
 }

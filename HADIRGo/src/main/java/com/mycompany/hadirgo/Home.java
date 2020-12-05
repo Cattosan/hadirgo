@@ -27,9 +27,6 @@ public class Home {
 //        //App.setRoot("FormLogin");
 //        App.setRoot("user");
 //    }
-    public static String getUsername(){
-        return usr;
-    }
     
     @FXML
     private void cekLogin(ActionEvent event) throws IOException{

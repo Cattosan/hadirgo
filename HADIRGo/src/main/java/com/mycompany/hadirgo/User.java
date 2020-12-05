@@ -68,7 +68,7 @@ public class User implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        labeluser.setText(Home.getUsername());
+        labeluser.setText(Home.usr);
         daftarKelas = FXCollections.observableArrayList();
         daftarKelas.addAll("test","kelas1","kelas2");
         ListDaftarKelas.setItems(daftarKelas);

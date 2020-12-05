@@ -83,9 +83,6 @@ public class HadirGoDb {
             e.printStackTrace();
         }
     }
-    for(int i = 0; i < mahasiswa.size(); i++){
-        mahasiswa.get(i).nama;
-    }
 
     //fungsi untuk validasi login
     public static boolean validate(String username, String password){
