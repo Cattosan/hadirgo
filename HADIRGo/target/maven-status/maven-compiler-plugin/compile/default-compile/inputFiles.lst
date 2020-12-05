@@ -1,5 +1,6 @@
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\KelasDb.java
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\User.java
+<<<<<<< Updated upstream
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\PresensiController.java
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\App.java
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\DetailKelasController.java
@@ -8,3 +9,19 @@ C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadir
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\UbahPasswordController.java
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\HadirGoDb.java
 C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\module-info.java
+=======
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\AddDosen.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Home.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\MenuLogin.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Presensi.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\UbahPasswordController.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Dosen.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\module-info.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Mahasiswa.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\App.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\DetailKelasController.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Kelas.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Enroll.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\Admin.java
+C:\Users\KUCI\Documents\GitHub\hadirgo\HADIRGo\src\main\java\com\mycompany\hadirgo\HadirGoDb.java
+>>>>>>> Stashed changes

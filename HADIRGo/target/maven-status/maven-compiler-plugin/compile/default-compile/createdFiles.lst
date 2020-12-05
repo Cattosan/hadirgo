@@ -1,6 +1,22 @@
+<<<<<<< Updated upstream
 com\mycompany\hadirgo\MenuLogin.class
 com\mycompany\hadirgo\User.class
 module-info.class
 com\mycompany\hadirgo\App.class
+=======
+com\mycompany\hadirgo\Dosen.class
+com\mycompany\hadirgo\App$1.class
+com\mycompany\hadirgo\UbahPasswordController.class
+com\mycompany\hadirgo\Admin.class
+com\mycompany\hadirgo\KelasDb.class
+com\mycompany\hadirgo\Kelas.class
+>>>>>>> Stashed changes
 com\mycompany\hadirgo\Home.class
 com\mycompany\hadirgo\HadirGoDb.class
+com\mycompany\hadirgo\MenuLogin.class
+module-info.class
+com\mycompany\hadirgo\DetailKelasController.class
+com\mycompany\hadirgo\AddDosen.class
+com\mycompany\hadirgo\Mahasiswa.class
+com\mycompany\hadirgo\App.class
+com\mycompany\hadirgo\App$2.class

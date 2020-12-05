@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<<<<<<< Updated upstream
+=======
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+>>>>>>> Stashed changes
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
@@ -19,9 +26,13 @@
                   <JFXButton layoutX="21.0" layoutY="34.0" text="Kembali" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="638.0">
                <children>
+<<<<<<< Updated upstream
                   <TableView prefHeight="300.0" prefWidth="604.0">
+=======
+                  <TableView fx:id="tabPresensi" prefHeight="290.0" prefWidth="640.0">
+>>>>>>> Stashed changes
                     <columns>
                       <TableColumn prefWidth="34.0" text="No." />
                         <TableColumn prefWidth="75.0" text="Foto" />
@@ -31,6 +42,8 @@
                         <TableColumn prefWidth="39.0" text="Pin" />
                     </columns>
                   </TableView>
+                  <ChoiceBox fx:id="pilihanPencarian" layoutX="157.0" layoutY="293.0" prefWidth="150.0" />
+                  <TextField fx:id="boxPencarian" layoutX="319.0" layoutY="293.0" promptText="cari seseuatu disini" />
                </children>
             </AnchorPane>
         </items>
