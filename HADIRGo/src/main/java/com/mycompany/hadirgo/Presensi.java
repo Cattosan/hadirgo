@@ -8,12 +8,14 @@ package com.mycompany.hadirgo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +34,8 @@ public class Presensi implements Initializable {
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
     ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
+    private Button btnPresensi= new Button("hadir");
+    
     
     @FXML
     private Label inimatkul;
@@ -52,10 +56,25 @@ public class Presensi implements Initializable {
     private TableColumn<Mahasiswa, String> nim;
 
     @FXML
-    private TableColumn<Mahasiswa, Boolean> presensi;
+    private TableColumn<Mahasiswa, String> presensi;
+    
+    @FXML
+    private TableColumn<Mahasiswa, String> btnHadir;
 
     @FXML
-    private TableColumn<Mahasiswa, String> pin;
+    private TableColumn<Mahasiswa, String> btnAbsen;
+
+    @FXML
+    private TableColumn<Mahasiswa, Object> pin;
+    
+    @FXML
+    private void hadir(ActionEvent event) throws IOException{
+        
+    }
+    @FXML
+    private void absen(ActionEvent event) throws IOException{
+        
+    }
     
     
     private int jumlahPeserta(){
@@ -68,10 +87,10 @@ public class Presensi implements Initializable {
             coba.add(peserta.get(i));
         }
         return coba;
-        
     }
     
-   
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inimatkul.setText(Admin.namaMatkul());
@@ -81,8 +100,9 @@ public class Presensi implements Initializable {
         foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
-//      presensi.setCellFactory(new PropertyValueFactory<Mahasiswa,Boolean>("presensi"));
-//      pin.setCellValueFactory(new PropertyValueFactory<Mahasiswa,String>("pin"));
+        btnHadir.setCellValueFactory(new PropertyValueFactory<>("btnHadir"));
+        btnAbsen.setCellValueFactory(new PropertyValueFactory<>("btnAbsen"));
+        pin.setCellValueFactory(new PropertyValueFactory<>("pin"));
         tabPresensi.setItems(peserta());
     }    
     

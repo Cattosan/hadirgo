@@ -5,6 +5,9 @@
  */
 package com.mycompany.hadirgo;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 
 /**
@@ -14,11 +17,12 @@ import javafx.scene.image.ImageView;
 public class Mahasiswa {
     private int nomor;
     private String nim;
-    private String nama;
-    
-    //menyimpan path foto
+    private String nama;    
     private String foto;
     private ImageView objekFoto;
+    private Button btnHadir;
+    private Button btnAbsen;
+    private RadioButton pin;
         
     Mahasiswa(int nomor,String nim, String nama, String foto, ImageView objekFoto){
         this.nomor = nomor;
@@ -26,6 +30,9 @@ public class Mahasiswa {
         this.nama = nama;
         this.foto = foto;
         this.objekFoto = objekFoto;
+        this.btnHadir = new Button("Hadir");
+        this.btnAbsen = new Button("Absen");
+        this.pin = new RadioButton();
     }
 
     public String getNama(){
@@ -81,6 +88,48 @@ public class Mahasiswa {
      */
     public void setObjekFoto(ImageView objekFoto) {
         this.objekFoto = objekFoto;
+    }
+
+    /**
+     * @return the pin
+     */
+    public RadioButton getPin() {
+        return pin;
+    }
+
+    /**
+     * @param pin the pin to set
+     */
+    public void setPin(RadioButton pin) {
+        this.pin = pin;
+    }
+
+    /**
+     * @return the btnHadir
+     */
+    public Button getBtnHadir() {
+        return btnHadir;
+    }
+
+    /**
+     * @param btnHadir the btnHadir to set
+     */
+    public void setBtnHadir(Button btnHadir) {
+        this.btnHadir = btnHadir;
+    }
+
+    /**
+     * @return the btnAbsen
+     */
+    public Button getBtnAbsen() {
+        return btnAbsen;
+    }
+
+    /**
+     * @param btnAbsen the btnAbsen to set
+     */
+    public void setBtnAbsen(Button btnAbsen) {
+        this.btnAbsen = btnAbsen;
     }
 
 }

@@ -54,12 +54,16 @@
                <children>
                   <TableView fx:id="tabPresensi" prefHeight="325.0" prefWidth="640.0">
                     <columns>
-                      <TableColumn fx:id="nomor" prefWidth="34.0" text="No." />
-                        <TableColumn fx:id="foto" prefWidth="127.0" text="Foto" />
-                        <TableColumn fx:id="nim" minWidth="0.0" prefWidth="106.0" text="NIM" />
-                      <TableColumn fx:id="namaMhs" prefWidth="235.0" text="Nama" />
-                        <TableColumn fx:id="presensi" prefWidth="93.0" text="Presensi" />
-                        <TableColumn fx:id="pin" prefWidth="44.0" text="Pin" />
+                      <TableColumn fx:id="nomor" prefWidth="34.0" resizable="false" text="No." />
+                        <TableColumn fx:id="foto" prefWidth="90.0" resizable="false" sortable="false" text="Foto" />
+                        <TableColumn fx:id="nim" minWidth="0.0" prefWidth="96.0" resizable="false" text="NIM" />
+                      <TableColumn fx:id="namaMhs" prefWidth="250.0" resizable="false" sortable="false" text="Nama" />
+                        <TableColumn fx:id="presensi" minWidth="18.0" prefWidth="126.0" resizable="false" sortable="false" text="Presensi">
+                           <columns>
+                              <TableColumn fx:id="btnAbsen" prefWidth="60.0" resizable="false" sortable="false" text="Absen" />
+                              <TableColumn fx:id="btnHadir" prefWidth="60.0" resizable="false" sortable="false" text="Hadir" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="pin" minWidth="0.0" prefWidth="50.0" resizable="false" sortable="false" text="Pin" />
                     </columns>
                   </TableView>
                </children>
