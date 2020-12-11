@@ -5,8 +5,10 @@
  */
 package com.mycompany.hadirgo;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -173,10 +175,12 @@ public class KelasDb {
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, kodeKelas);
                 ResultSet resultSet = preparedStatement.executeQuery();
-                
                 while(resultSet.next()){
-                    foto = new Image(new FileInputStream("D:\\Documents\\GitHub\\hadirgo\\HADIRGo\\src\\main\\resources\\com\\mycompany\\hadirgo\\foto.jpg"));
+                    
+                    foto = new Image(new FileInputStream(".\\src\\main\\resources\\com\\mycompany\\hadirgo\\foto.jpg"));
                     fotoView = new ImageView(foto);
+                    fotoView.setFitHeight(50);
+                    fotoView.setFitWidth(50);
                     mahasiswa.add(new Mahasiswa(
                         i++,
                         resultSet.getString("nim"),
