@@ -43,7 +43,7 @@ public class Presensi implements Initializable {
     private TableColumn<Mahasiswa, Integer> nomor;
 
     @FXML
-    private TableColumn<Mahasiswa, String> foto;
+    private TableColumn<Mahasiswa, ImageView> foto;
 
     @FXML
     private TableColumn<Mahasiswa, String> namaMhs;
@@ -65,7 +65,7 @@ public class Presensi implements Initializable {
     private ObservableList<Mahasiswa> peserta(){
         coba.clear();
         for(int i=0;i<jumlahPeserta();i++){
-        coba.add(peserta.get(i));
+            coba.add(peserta.get(i));
         }
         return coba;
         
@@ -78,7 +78,7 @@ public class Presensi implements Initializable {
 //        ImageView fotoMhs = new ImageView(new Image(this.getClass().getResourceAsStream("./foto.jpg")));
         nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
         foto.setPrefWidth(80);
-        foto.setCellValueFactory(new PropertyValueFactory<>("foto"));
+        foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
 //      presensi.setCellFactory(new PropertyValueFactory<Mahasiswa,Boolean>("presensi"));

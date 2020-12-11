@@ -5,6 +5,8 @@
  */
 package com.mycompany.hadirgo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -156,6 +162,8 @@ public class KelasDb {
     //mengembalikan data mahasiswa yang enroll
     //belum complete, menampilkan semua mahasiswa untuk sementara
     public static ArrayList<Mahasiswa> showDetailKelas(String kodeKelas){
+        Image foto;
+        ImageView fotoView;
         var mahasiswa = new ArrayList<Mahasiswa>();
         int i=1;
         String sql = "SELECT * FROM mahasiswa INNER JOIN enroll on mahasiswa.nim = enroll.nim WHERE kodeKelas = ?;";
@@ -167,16 +175,21 @@ public class KelasDb {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 
                 while(resultSet.next()){
+                    foto = new Image(new FileInputStream("D:\\Documents\\GitHub\\hadirgo\\HADIRGo\\src\\main\\resources\\com\\mycompany\\hadirgo\\foto.jpg"));
+                    fotoView = new ImageView(foto);
                     mahasiswa.add(new Mahasiswa(
                         i++,
                         resultSet.getString("nim"),
                         resultSet.getString("nama"),
-                        resultSet.getString("path_foto"))
+                        resultSet.getString("path_foto"),
+                        fotoView)
                     );
                     
 //                    i++;
                 }
                 return mahasiswa;
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(KelasDb.class.getName()).log(Level.SEVERE, null, ex);
             }
         }catch(SQLException | ClassNotFoundException e){
             e.printStackTrace();

@@ -1,13 +1,16 @@
+com\mycompany\hadirgo\User.class
 com\mycompany\hadirgo\Dosen.class
 com\mycompany\hadirgo\App$1.class
 com\mycompany\hadirgo\UbahPasswordController.class
 com\mycompany\hadirgo\Admin.class
 com\mycompany\hadirgo\KelasDb.class
 com\mycompany\hadirgo\Kelas.class
+com\mycompany\hadirgo\PresensiDb.class
 com\mycompany\hadirgo\Home.class
 com\mycompany\hadirgo\HadirGoDb.class
 com\mycompany\hadirgo\MenuLogin.class
 com\mycompany\hadirgo\Presensi.class
+com\mycompany\hadirgo\PinDb.class
 module-info.class
 com\mycompany\hadirgo\DetailKelasController.class
 com\mycompany\hadirgo\AddDosen.class
