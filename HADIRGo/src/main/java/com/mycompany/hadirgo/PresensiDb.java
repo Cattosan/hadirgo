@@ -8,6 +8,7 @@ package com.mycompany.hadirgo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -21,11 +22,8 @@ public class PresensiDb {
         String sql = "INSERT INTO presensi (kodeKelas, nim, pertemuanKe) \n"
                     + " VALUES(?, ?, ?);";
         try{
-            //mengakses db
             Class.forName("org.sqlite.JDBC");
-            //membuat preparedstatement untuk query validasi
             try (Connection conn = DriverManager.getConnection(URL)) {
-                //membuat preparedstatement untuk query validasi
                 
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, kodeKelas);
@@ -40,4 +38,34 @@ public class PresensiDb {
             e.printStackTrace();
         }
     }
+    
+    public boolean isMahasiswaHadir(String kodeKelas, String nim, int pertemuan){
+        String sql = "SELECT * from presensi where kodeKelas = ? AND nim = ? AND pertemuan = ?";
+        
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try (Connection conn = DriverManager.getConnection(URL)) {
+                
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, kodeKelas);
+                preparedStatement.setString(2, nim);
+                preparedStatement.setInt(3, pertemuan);
+                
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    return true;
+                }
+                
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+                
+                return false;
+            }
+        } catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+                            
 }
