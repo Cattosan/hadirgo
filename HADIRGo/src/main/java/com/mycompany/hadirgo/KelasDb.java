@@ -99,7 +99,7 @@ public class KelasDb {
                 preparedStatement.setByte(4, menit);
                 preparedStatement.setString(5, kodeDosen);
                 
-                preparedStatement.executeUpdate();
+                preparedStatement.execute();
                 preparedStatement.close();
                 conn.close();
             }
@@ -167,7 +167,7 @@ public class KelasDb {
         Image foto;
         ImageView fotoView;
         var mahasiswa = new ArrayList<Mahasiswa>();
-        int i=1;
+        int i = 1;
         String sql = "SELECT * FROM mahasiswa INNER JOIN enroll on mahasiswa.nim = enroll.nim WHERE kodeKelas = ?;";
         try{
             Class.forName("org.sqlite.JDBC");
