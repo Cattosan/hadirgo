@@ -157,8 +157,8 @@ public class KelasDb {
     //belum complete, menampilkan semua mahasiswa untuk sementara
     public static ArrayList<Mahasiswa> showDetailKelas(String kodeKelas){
         var mahasiswa = new ArrayList<Mahasiswa>();
-        String sql = "SELECT * FROM mahasiswa where nim = ("
-                    + "     SELECT nim from enroll WHERE kodeKelas = ?);";
+        int i=1;
+        String sql = "SELECT * FROM mahasiswa INNER JOIN enroll on mahasiswa.nim = enroll.nim WHERE kodeKelas = ?;";
         try{
             Class.forName("org.sqlite.JDBC");
             try(Connection conn = DriverManager.getConnection(URL)){
@@ -168,10 +168,13 @@ public class KelasDb {
                 
                 while(resultSet.next()){
                     mahasiswa.add(new Mahasiswa(
+                        i++,
                         resultSet.getString("nim"),
                         resultSet.getString("nama"),
                         resultSet.getString("path_foto"))
                     );
+                    
+//                    i++;
                 }
                 return mahasiswa;
             }

@@ -5,18 +5,22 @@
  */
 package com.mycompany.hadirgo;
 
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Akira Rafhael
  */
 public class Mahasiswa {
+    private int nomor;
     private String nim;
     private String nama;
     
     //menyimpan path foto
     private String foto;
-    
-    Mahasiswa(String nim, String nama, String foto){
+        
+    Mahasiswa(int nomor,String nim, String nama, String foto){
+        this.nomor = nomor;
         this.nim = nim;
         this.nama = nama;
         this.foto = foto;
@@ -32,6 +36,20 @@ public class Mahasiswa {
 
     public String getFoto(){
         return foto;
+    }
+
+    /**
+     * @return the nomor
+     */
+    public int getNomor() {
+        return nomor;
+    }
+
+    /**
+     * @param nomor the nomor to set
+     */
+    public void setNomor(int nomor) {
+        this.nomor = nomor;
     }
 
 }

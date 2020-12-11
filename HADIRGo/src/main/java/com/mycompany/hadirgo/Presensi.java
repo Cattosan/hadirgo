@@ -7,6 +7,7 @@ package com.mycompany.hadirgo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 //import javafx.scene.text.Text;
 
 /**
@@ -25,7 +28,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author KUCI
  */
 public class Presensi implements Initializable {
+    private int index;
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
+    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
+    ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     
     @FXML
     private Label inimatkul;
@@ -33,8 +39,8 @@ public class Presensi implements Initializable {
     @FXML
     private TableView<Mahasiswa> tabPresensi;
     
-//    @FXML
-//    private TableColumn<?, int> nomor;
+    @FXML
+    private TableColumn<Mahasiswa, Integer> nomor;
 
     @FXML
     private TableColumn<Mahasiswa, String> foto;
@@ -51,32 +57,33 @@ public class Presensi implements Initializable {
     @FXML
     private TableColumn<Mahasiswa, String> pin;
     
-    @FXML
-    protected void peserta(){
-//        ObservableList<Mahasiswa> data = tabPresensi.getItems();
-//        data.add(new Mahasiswa("foto", "nama", "12345678", true, "test"));
+    
+    private int jumlahPeserta(){
+        return peserta.size();
     }
     
-    public ObservableList<Mahasiswa> test(){
-        ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
-        coba.add(new Mahasiswa("Path foto", "nama mahasiswa", "71123456"));
+    private ObservableList<Mahasiswa> peserta(){
+        coba.clear();
+        for(int i=0;i<jumlahPeserta();i++){
+        coba.add(peserta.get(i));
+        }
         return coba;
-    }
-    
-    private void showKelasDetail(){
         
     }
     
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inimatkul.setText(Admin.namaMatkul());
-        foto.setCellValueFactory(new PropertyValueFactory<>("path_foto"));
+//        ImageView fotoMhs = new ImageView(new Image(this.getClass().getResourceAsStream("./foto.jpg")));
+        nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
+        foto.setPrefWidth(80);
+        foto.setCellValueFactory(new PropertyValueFactory<>("foto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
 //      presensi.setCellFactory(new PropertyValueFactory<Mahasiswa,Boolean>("presensi"));
 //      pin.setCellValueFactory(new PropertyValueFactory<Mahasiswa,String>("pin"));
-        
-        tabPresensi.setItems(test());
+        tabPresensi.setItems(peserta());
     }    
     
     @FXML

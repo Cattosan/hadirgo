@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,25 +12,35 @@
 
 <AnchorPane fx:id="user" prefHeight="404.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.User">
    <children>
-      <SplitPane dividerPositions="0.21003134796238246" prefHeight="404.0" prefWidth="640.0">
+      <SplitPane dividerPositions="0.219435736677116" prefHeight="404.0" prefWidth="640.0">
         <items>
-            <AnchorPane prefHeight="402.0" prefWidth="210.0">
+            <AnchorPane prefHeight="402.0" prefWidth="166.0">
                <children>
-                  <Label fx:id="labeluser" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="70.0" minHeight="16" prefHeight="25.0" prefWidth="92.0" text="llllalala" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
-                  <ImageView fitHeight="56.0" fitWidth="53.0" layoutX="39.0" layoutY="14.0">
+                  <Label fx:id="labeluser" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="70.0" minHeight="16" prefHeight="25.0" prefWidth="92.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+                  <ImageView fitHeight="56.0" fitWidth="53.0" layoutX="45.0" layoutY="14.0">
                      <image>
                         <Image url="@user-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="36.0" layoutY="350.0" onAction="#backToWelcome" text="Log Out" textAlignment="CENTER" />
-                  <JFXButton fx:id="ubahpass" layoutX="17.0" layoutY="103.0" onAction="#kesinilo" text="Ubah Password"/>
+                  
+                  <JFXButton fx:id="logoutButton" contentDisplay="CENTER" layoutX="33.0" layoutY="350.0" onAction="#backToWelcome" prefHeight="32.0" prefWidth="73.0" text="Log Out" textAlignment="CENTER" />
+                  <JFXButton fx:id="ubahpass" layoutX="17.0" layoutY="103.0" onAction="#ubahPassword" text="Ubah Password" />
+                  <JFXButton fx:id="tambahkls" layoutX="17.0" layoutY="139.0" prefHeight="32.0" prefWidth="109.0" text="Tambah Kelas" />
+                  <JFXButton fx:id="editkls" layoutX="17.0" layoutY="174.0" prefHeight="32.0" prefWidth="109.0" text="Edit Kelas" />
+                  <JFXButton fx:id="tambahdsn" layoutX="17.0" layoutY="210.0" prefHeight="32.0" prefWidth="109.0" text="Tambah Dosen" />
+                  <JFXButton fx:id="hapusdsn" layoutX="17.0" layoutY="245.0" prefHeight="32.0" prefWidth="109.0" text="Hapus Dosen" />
+                  <Button fx:id="test" layoutX="37.0" layoutY="298.0" mnemonicParsing="false" onAction="#moveToDetailKelas" text="Test" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="test" layoutX="183.0" layoutY="134.0" mnemonicParsing="false" onAction="#moveToDetailKelas" text="Test" />
-               </children>
-            </AnchorPane>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="407.0" prefWidth="514.0" vbarPolicy="ALWAYS">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="404.0" prefWidth="504.0">
+                     <children>
+                        <ListView fx:id="ListDaftarKelas" onMouseClicked="#handle" layoutY="-2.0" prefHeight="402.0" prefWidth="502.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
         </items>
       </SplitPane>
    </children>
