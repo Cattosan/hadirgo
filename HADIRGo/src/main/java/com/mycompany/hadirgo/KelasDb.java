@@ -16,10 +16,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -199,5 +205,20 @@ public class KelasDb {
             e.printStackTrace();
         }
         return mahasiswa;
+    }
+    
+    public void showReportHadir(String namaMatkul, int pertemuan){
+        HashMap hashmap = new HashMap<String, Object>();
+        hashmap.put("namaMatkul", namaMatkul);
+        hashmap.put("pertemuanKe", Integer.toString(pertemuan));
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:admin.db");
+            JasperReport jasperReport = JasperCompileManager.compileReport(".\\src\\main\\resources\\report\\HadirReport.jrxml");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hashmap, conn);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

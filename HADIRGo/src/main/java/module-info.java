@@ -7,4 +7,5 @@ module com.mycompany.hadirgo {
     
     opens com.mycompany.hadirgo to javafx.fxml;
     exports com.mycompany.hadirgo;
+    requires jasperreports;
 }
