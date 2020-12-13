@@ -8,14 +8,13 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-//import javafx.event.Event;
-//import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class Admin implements Initializable{
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
@@ -44,17 +43,17 @@ public class Admin implements Initializable{
     @FXML
     private JFXButton hapusdsn;
 
-    @FXML
-    private Button test;
     
     @FXML
     private ListView<Kelas> ListDaftarKelas;
+    @FXML
+    private AnchorPane user;
     
     public int sizekelas(){
         return daftar2.size();
     }
     
-    private void listKelas(){
+    public void listKelas(){
         for(int i = 0; i < sizekelas(); i++){
             daftarKelas.addAll(daftar2.get(i));
         }
@@ -64,7 +63,6 @@ public class Admin implements Initializable{
     private void backToWelcome(ActionEvent event) throws IOException {
         App.setRoot("Home");
     }
-    @FXML
     private void moveToDetailKelas() throws IOException{
         App.setRoot("DetailKelas");
     }
@@ -83,16 +81,26 @@ public class Admin implements Initializable{
     
     @FXML
     public void handle(MouseEvent event) throws IOException{
-        //System.out.println(ListDaftarKelas.getSelectionModel().getSelectedItem());
-        //System.out.println(ListDaftarKelas.getSelectionModel().getSelectedItem());
         namaKelas = ListDaftarKelas.getSelectionModel().getSelectedItem().getNamaKelas();
         kodeKelas = ListDaftarKelas.getSelectionModel().getSelectedItem().getKodeKelas();
         App.setRoot("Presensi");
     }
     
     @FXML
-    private void tambahdosen(ActionEvent event) throws IOException{
-        App.setRoot("AddDosen");
+    private void dosen(ActionEvent event) throws IOException{
+        App.setRoot("tambahDosen");
+    }
+//    private void deletedosen(ActionEvent event) throws IOException{
+//        App.setRoot("deleteDosen");
+//    }
+    
+    @FXML
+    private void tambahdaneditkelas(ActionEvent event) throws IOException{
+        App.setRoot("Matkul");
+    }
+    @FXML
+    private void enroll(ActionEvent event) throws IOException{
+        App.setRoot("enroll");
     }
     
     static String namaMatkul(){

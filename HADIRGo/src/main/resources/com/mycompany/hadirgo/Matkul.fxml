@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.MatkulController">
+   <children>
+      <SplitPane dividerPositions="0.151" orientation="VERTICAL" prefHeight="425.0" prefWidth="640.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <JFXButton fx:id="Kembali" layoutX="14.0" layoutY="18.0" onAction="#backcurrentuser" text="Back" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField fx:id="KodeKelas" layoutX="83.0" layoutY="87.0" />
+                  <TextField fx:id="MataKuliah" layoutX="83.0" layoutY="126.0" />
+                  <TextField fx:id="Jam" layoutX="83.0" layoutY="161.0" prefHeight="25.0" prefWidth="52.0" />
+                  <TextField fx:id="Menit" layoutX="180.0" layoutY="161.0" prefHeight="25.0" prefWidth="52.0" />
+                  <Label layoutX="14.0" layoutY="91.0" prefHeight="17.0" prefWidth="62.0" text="Kode Kelas" />
+                  <Label layoutX="14.0" layoutY="130.0" prefHeight="17.0" prefWidth="62.0" text="Mata kuliah" />
+                  <Label layoutX="18.0" layoutY="165.0" text="Jam" />
+                  <Label layoutX="144.0" layoutY="165.0" text="Menit" />
+                  <Label layoutX="15.0" layoutY="199.0" text="ID Dosen" />
+                  <TextField fx:id="IDdosen" layoutX="83.0" layoutY="195.0" />
+                  <ListView fx:id="listKelas" layoutX="303.0" layoutY="-5.0" onMouseClicked="#pilihKelas" prefHeight="363.0" prefWidth="336.0" />
+                  <JFXButton fx:id="btnTambahMatKul" layoutX="203.0" layoutY="245.0" onAction="#tambahKelas" style="-fx-background-color: #2200ff;" text="Tambah" textFill="#eeecec" />
+                  <JFXButton fx:id="btnUpdate" layoutX="53.0" layoutY="245.0" onAction="#ubahKelas" style="-fx-background-color: #2200ff;" text="Perbarui" textFill="#eeecec" />
+                  <JFXButton fx:id="btnBatal" layoutX="136.0" layoutY="245.0" onAction="#btnBatal" style="-fx-background-color: #ff5151;" text="Batal" textFill="#f2eeee" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

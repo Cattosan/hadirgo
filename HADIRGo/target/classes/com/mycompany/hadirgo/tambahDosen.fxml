@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.DosenController">
+   <children>
+      <SplitPane dividerPositions="0.1531" orientation="VERTICAL" prefHeight="425.0" prefWidth="640.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <JFXButton fx:id="kembali" onAction="#backcurrentuser" layoutX="20.0" layoutY="19.0" text="Back" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField fx:id="namaDosen" layoutX="105.0" layoutY="121.0" />
+                  <TextField fx:id="idDosen" layoutX="105.0" layoutY="161.0" />
+                  <JFXButton fx:id="tambah" layoutX="195.0" layoutY="209.0" style="-fx-background-color: #2200ff;" text="Tambah" textFill="#f8f8f8" />
+                  <Label layoutX="14.0" layoutY="125.0" text="Nama Dosen" />
+                  <Label layoutX="34.0" layoutY="165.0" text="ID Dosen" />
+                  <JFXButton layoutX="105.0" layoutY="209.0" style="-fx-background-color: #ff5151;" text="Hapus" textFill="#eeebeb" />
+                  <ListView fx:id="listDosen" layoutX="319.0" prefHeight="355.0" prefWidth="319.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -39,8 +39,8 @@ public class PresensiDb {
         }
     }
     
-    public boolean isMahasiswaHadir(String kodeKelas, String nim, int pertemuan){
-        String sql = "SELECT * from presensi where kodeKelas = ? AND nim = ? AND pertemuan = ?";
+    public boolean isMahasiswaHadir(String kodeKelas, int pertemuan){
+        String sql = "SELECT * from presensi where kodeKelas = ? AND pertemuanKe = ?";
         
         try{
             Class.forName("org.sqlite.JDBC");
@@ -48,8 +48,7 @@ public class PresensiDb {
                 
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, kodeKelas);
-                preparedStatement.setString(2, nim);
-                preparedStatement.setInt(3, pertemuan);
+                preparedStatement.setInt(2, pertemuan);
                 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
@@ -67,5 +66,10 @@ public class PresensiDb {
         }
         return false;
     }
+    
+//    public int cekMingguKe(){
+//        String sql = "SELECT DISTINCT pertemuan FROM presensi";
+//        
+//    }
                             
 }

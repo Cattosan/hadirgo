@@ -55,7 +55,8 @@ public class KelasDb {
         byte jam;
         byte menit;
 //        String namaDosen;
-        
+//        menerima idDosen dari database
+        String dosen;
         //menyimpan sementara id_dosen untuk tampilan kelas khusus dosen tertentu
         String idDosen = "";
         
@@ -82,8 +83,10 @@ public class KelasDb {
                     namaKelas = resultSet.getString("namaKelas");
                     jam = resultSet.getByte("jam");
                     menit = resultSet.getByte("menit");
+                    dosen = resultSet.getString("id_dosen");
                     
-                    kelas.add(new Kelas(kodeKelas, namaKelas, jam, menit));
+                    
+                    kelas.add(new Kelas(kodeKelas, namaKelas, jam, menit, dosen));
                 }
                 return kelas;
             }

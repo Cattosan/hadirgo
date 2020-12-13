@@ -18,9 +18,9 @@
                <children>
                   <JFXButton fx:id="logoutButton" buttonType="RAISED" contentDisplay="CENTER" layoutX="34.0" layoutY="350.0" onAction="#backToWelcome" prefHeight="32.0" prefWidth="73.0" ripplerFill="#ff5151" style="-fx-background-color: #ff5151;" text="Log Out" textAlignment="CENTER" textFill="WHITE" />
                   <JFXButton fx:id="ubahpass" buttonType="RAISED" layoutX="16.0" layoutY="116.0" onAction="#ubahPassword" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2d00ff" style="-fx-background-color: #2200ff;" text="Ubah Password" textFill="WHITE" />
-                  <JFXButton fx:id="tambahkls" buttonType="RAISED" layoutX="16.0" layoutY="152.0" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Tambah Kelas" textFill="WHITE" />
-                  <JFXButton fx:id="editkls" buttonType="RAISED" layoutX="16.0" layoutY="187.0" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Edit Kelas" textFill="WHITE" />
-                  <JFXButton fx:id="tambahdsn" buttonType="RAISED" layoutX="16.0" layoutY="223.0" onAction="#tambahdosen" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Tambah Dosen" textFill="WHITE" />
+                  <JFXButton fx:id="tambahkls" buttonType="RAISED" layoutX="16.0" layoutY="152.0" onAction="#tambahdaneditkelas" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Kelas" textFill="WHITE" />
+                  <JFXButton fx:id="enroll" buttonType="RAISED" layoutX="16.0" layoutY="187.0" onAction="#enroll" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Enroll" textFill="WHITE" />
+                  <JFXButton fx:id="tambahdsn" buttonType="RAISED" layoutX="16.0" layoutY="223.0" onAction="#dosen" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Dosen" textFill="WHITE" />
                   <JFXButton fx:id="hapusdsn" buttonType="RAISED" layoutX="16.0" layoutY="258.0" prefHeight="32.0" prefWidth="109.0" ripplerFill="#2200ff" style="-fx-background-color: #2200ff;" text="Hapus Dosen" textFill="WHITE" />
                   <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="100.0" prefWidth="136.0" style="-fx-background-color: #45F277;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-1.0">
                      <children>

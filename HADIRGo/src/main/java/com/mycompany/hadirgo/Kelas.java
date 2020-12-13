@@ -14,12 +14,14 @@ public class Kelas {
     private String namaKelas;
     private byte jam;
     private byte menit;
+    private String idDosen;
     
-    Kelas(String kodeKelas, String namaKelas, byte jam, byte menit){
+    Kelas(String kodeKelas, String namaKelas, byte jam, byte menit,String idDosen){
         this.kodeKelas = kodeKelas;
         this.namaKelas = namaKelas;
         this.jam = jam;
         this.menit = menit;
+        this.idDosen = idDosen;
     }
 
     /**
@@ -52,5 +54,19 @@ public class Kelas {
     
     public String toString(){
         return "[" + getKodeKelas() + "]  | " + getNamaKelas();
+    }
+
+    /**
+     * @return the idDosen
+     */
+    public String getIdDosen() {
+        return idDosen;
+    }
+
+    /**
+     * @param idDosen the idDosen to set
+     */
+    public void setIdDosen(String idDosen) {
+        this.idDosen = idDosen;
     }
 }

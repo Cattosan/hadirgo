@@ -5,10 +5,12 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Hadir Go Adapter"/>
 	<parameter name="pertemuanKe" class="java.lang.String"/>
 	<parameter name="namaMatkul" class="java.lang.String"/>
+	<parameter name="kodeKelas" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT nim, (
 	SELECT nama from mahasiswa where nim = presensi.nim) as nama
-	from presensi]]>
+	from presensi
+	WHERE kodeKelas = $P{kodeKelas} AND pertemuanKe = $P{pertemuanKe}]]>
 	</queryString>
 	<field name="nim" class="java.lang.Object">
 		<property name="com.jaspersoft.studio.field.name" value="nim"/>
@@ -36,16 +38,16 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="42" splitType="Stretch">
+		<band height="55" splitType="Stretch">
 			<textField>
-				<reportElement x="80" y="0" width="160" height="20" uuid="5171f074-4ef6-4c21-954d-09aa75173958"/>
+				<reportElement x="80" y="0" width="230" height="20" uuid="5171f074-4ef6-4c21-954d-09aa75173958"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{namaMatkul}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="20" width="160" height="20" uuid="ff135980-c595-4017-87f9-7919f2cf176d"/>
+				<reportElement x="80" y="20" width="230" height="20" uuid="ff135980-c595-4017-87f9-7919f2cf176d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -149,9 +151,15 @@
 		<band height="82" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="20" width="100" height="30" uuid="58a456b1-239a-4fe1-96f1-adfac6235d4f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="227" splitType="Stretch"/>
+		<band height="260" splitType="Stretch"/>
 	</summary>
 </jasperReport>

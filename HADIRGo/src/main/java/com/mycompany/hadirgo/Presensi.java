@@ -10,19 +10,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -30,18 +32,20 @@ import javafx.scene.image.ImageView;
  * @author KUCI
  */
 public class Presensi implements Initializable {
-    private int index;
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
     ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
-    private Button btnPresensi= new Button("hadir");
-    
+    ObservableList<String> list = FXCollections.observableArrayList();
+    String cmbMingguKe;
     
     @FXML
     private Label inimatkul;
     
     @FXML
     private TableView<Mahasiswa> tabPresensi;
+    
+    @FXML
+    private ComboBox<String> mingguPertemuan;
     
     @FXML
     private TableColumn<Mahasiswa, Integer> nomor;
@@ -89,14 +93,47 @@ public class Presensi implements Initializable {
         return coba;
     }
     
+    private void pertemuan(){
+        int jumlahMinggu = 13;
+        for(int i = 1; i <= jumlahMinggu; i++){
+            list.add("Minggu ke-" + i);
+        }
+        mingguPertemuan.setItems(list);
+    }
     
+    public void mingguBtn(ActionEvent event) throws IOException{
+       cmbMingguKe = mingguPertemuan.getSelectionModel().getSelectedItem();
+       System.out.println(hasilMinggu());
+       iniYangHadir();
+    }
+    private int hasilMinggu(){
+        StringBuilder sb = new StringBuilder();
+        for(Character c : cmbMingguKe.toCharArray()){
+            if(Character.isDigit(c)){
+                sb.append(c);
+            }
+        }
+        
+        return Integer.parseInt(sb.toString());
+    }
     
+    private void iniYangHadir(){
+        boolean pesertaHadir=false;
+        PresensiDb pakeYangIni = new PresensiDb();
+        if(pakeYangIni.isMahasiswaHadir(Admin.kodeKelas, hasilMinggu())) {
+            System.out.println("Kalo ini jalan");            
+        }
+        else{
+            System.out.println("ndak jalan");
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pertemuan();
+//        System.out.println(hasilMinggu());
         inimatkul.setText(Admin.namaMatkul());
-//        ImageView fotoMhs = new ImageView(new Image(this.getClass().getResourceAsStream("./foto.jpg")));
+        
         nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
-        foto.setPrefWidth(80);
         foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
