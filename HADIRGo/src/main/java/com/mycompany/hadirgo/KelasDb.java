@@ -8,6 +8,7 @@ package com.mycompany.hadirgo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,12 +19,14 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -35,7 +38,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class KelasDb {
     private static final String URL = "jdbc:sqlite:admin.db";
-    private static final String FILE_REPORT_PATH = ".\\pdfReport";
+    private static final String FILE_REPORT_PATH = ".\\pdfReport\\";
     private static boolean isDataExist = false;
     
     //fungsi untuk mengembalikan semua data kelas berdasarkan akun yang login(admin atau dosen)
@@ -252,6 +255,10 @@ public class KelasDb {
             JasperReport jasperReport = JasperCompileManager.compileReport(".\\src\\main\\resources\\report\\HadirReport.jrxml");
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hashmap, conn);
             JasperViewer.viewReport(jasperPrint);
+            File pdf = new File(FILE_REPORT_PATH + fileNameReport());
+            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
+            
+            conn.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -260,7 +267,7 @@ public class KelasDb {
     public String fileNameReport(){
         String fileName = "Report - ";
         DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
-//        fileName +=
+        fileName += df.format(new Date()) + ".pdf";
         return fileName;
     }
 }
