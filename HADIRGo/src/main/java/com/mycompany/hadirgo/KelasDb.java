@@ -207,8 +207,9 @@ public class KelasDb {
         return mahasiswa;
     }
     
-    public void showReportHadir(String namaMatkul, int pertemuan){
+    public void showReportHadir(String kodeMatkul, String namaMatkul, int pertemuan){
         HashMap hashmap = new HashMap<String, Object>();
+        hashmap.put("kodeKelas", kodeMatkul);
         hashmap.put("namaMatkul", namaMatkul);
         hashmap.put("pertemuanKe", Integer.toString(pertemuan));
 
