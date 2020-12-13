@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -33,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class KelasDb {
     private static final String URL = "jdbc:sqlite:admin.db";
-    
+    private static final String FILE_REPORT_PATH = ".\\pdfReport";
     private static boolean isDataExist = false;
     
     //fungsi untuk mengembalikan semua data kelas berdasarkan akun yang login(admin atau dosen)
@@ -146,8 +148,13 @@ public class KelasDb {
         }
     }
     
-    public static void deleteKelas(String kodeKelas){
-        String sql = "DELETE FROM kelas where kodeKelas = ?;";
+    public static void updateKelas(String kodeKelas, String namaKelas, byte jam, byte menit, String kodeDosen){
+        String sql = "UPDATE kelas SET \n"
+                + " jam = ?, \n"
+                + " menit = ?, \n"
+                + " id_dosen = ? "
+                + "WHERE kodeKelas = ?;";
+        
         try{
             //mengakses db
             Class.forName("org.sqlite.JDBC");
@@ -155,9 +162,36 @@ public class KelasDb {
             try (Connection conn = DriverManager.getConnection(URL)) {
                 //membuat preparedstatement untuk query validasi
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, kodeKelas);
+                preparedStatement.setByte(1, jam);
+                preparedStatement.setByte(2, menit);
+                preparedStatement.setString(3, kodeDosen);
+                preparedStatement.setString(4, kodeKelas);
+                
                 
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            }
+        } catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void createDosen(String kodeDosen, String namaDosen){
+        String sql = "INSERT INTO dosen (kode_dosen, nama_dosen) \n"
+                    + "VALUES(?, ?);";
+        try{
+            //mengakses db
+            Class.forName("org.sqlite.JDBC");
+            //membuat preparedstatement untuk query validasi
+            try (Connection conn = DriverManager.getConnection(URL)) {
+                //membuat preparedstatement untuk query validasi
+                
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, kodeDosen);
+                preparedStatement.setString(2, namaDosen);
+                
+                preparedStatement.execute();
                 preparedStatement.close();
                 conn.close();
             }
@@ -221,5 +255,12 @@ public class KelasDb {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public String fileNameReport(){
+        String fileName = "Report - ";
+        DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+//        fileName +=
+        return fileName;
     }
 }
