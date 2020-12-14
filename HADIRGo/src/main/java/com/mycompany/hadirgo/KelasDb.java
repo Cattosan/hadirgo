@@ -123,37 +123,6 @@ public class KelasDb {
         
     }
     
-    public static void updateKelas(String kodeKelasLama, String kodeKelasBaru, String namaKelas, byte jam, byte menit, String kodeDosen){
-        String sql = "UPDATE kelas SET kodeKelas = ?,\n"
-                + " namaKelas = ?, \n"
-                + " jam = ?, \n"
-                + " menit = ?, \n"
-                + " id_dosen = ? "
-                + "WHERE kodeKelas = ?;";
-        
-        try{
-            //mengakses db
-            Class.forName("org.sqlite.JDBC");
-            //membuat preparedstatement untuk query validasi
-            try (Connection conn = DriverManager.getConnection(URL)) {
-                //membuat preparedstatement untuk query validasi
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, kodeKelasBaru);
-                preparedStatement.setString(2, namaKelas);
-                preparedStatement.setByte(3, jam);
-                preparedStatement.setByte(4, menit);
-                preparedStatement.setString(5, kodeDosen);
-                preparedStatement.setString(6, kodeKelasLama);
-                
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-                conn.close();
-            }
-        } catch(SQLException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-    }
-    
     public static void updateKelas(String kodeKelas, String namaKelas, byte jam, byte menit, String kodeDosen){
         String sql = "UPDATE kelas SET \n"
                 + " jam = ?, \n"
@@ -204,6 +173,35 @@ public class KelasDb {
         } catch(SQLException | ClassNotFoundException e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<DosenObject> showAllDosen(){
+        var dosenList = new ArrayList<DosenObject>();
+        String sql = "SELECT * from dosen;";
+        
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try (Connection conn = DriverManager.getConnection(URL)) {
+                
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next()){
+                    dosenList.add(new DosenObject(
+                            resultSet.getString("idDosen"),
+                            resultSet.getString("namaDosen")
+                    ));
+                }
+                
+                statement.close();
+                conn.close();
+                return dosenList;
+            }
+        } catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
     //fungsi untuk tampilan setelah memilih kelas
