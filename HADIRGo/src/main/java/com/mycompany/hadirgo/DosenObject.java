@@ -32,5 +32,8 @@ public class DosenObject {
         return namaDosen;
     }
     
+    public String toString(){
+        return getIdDosen() + " | " + getNamaDosen();
+    }
     
 }

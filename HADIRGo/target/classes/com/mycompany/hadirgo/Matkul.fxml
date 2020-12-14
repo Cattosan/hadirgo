@@ -32,6 +32,7 @@
                   <JFXButton fx:id="btnTambahMatKul" layoutX="203.0" layoutY="245.0" onAction="#tambahKelas" style="-fx-background-color: #2200ff;" text="Tambah" textFill="#eeecec" />
                   <JFXButton fx:id="btnUpdate" layoutX="53.0" layoutY="245.0" onAction="#ubahKelas" style="-fx-background-color: #2200ff;" text="Perbarui" textFill="#eeecec" />
                   <JFXButton fx:id="btnBatal" layoutX="136.0" layoutY="245.0" onAction="#btnBatal" style="-fx-background-color: #ff5151;" text="Batal" textFill="#f2eeee" />
+                  <JFXButton fx:id="hapus" layoutX="206.0" layoutY="245.0" onAction="#hapusKelas" style="-fx-background-color: #2200ff;" text="Hapus" textFill="#f2f2f2" />
                </children>
             </AnchorPane>
         </items>

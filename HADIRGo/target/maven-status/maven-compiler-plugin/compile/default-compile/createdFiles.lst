@@ -11,8 +11,6 @@ com\mycompany\hadirgo\MenuLogin.class
 com\mycompany\hadirgo\Presensi.class
 com\mycompany\hadirgo\PinDb.class
 module-info.class
-com\mycompany\hadirgo\DetailKelasController.class
-com\mycompany\hadirgo\AddDosen.class
 com\mycompany\hadirgo\Mahasiswa.class
 com\mycompany\hadirgo\App.class
 com\mycompany\hadirgo\App$2.class

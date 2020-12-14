@@ -46,6 +46,7 @@ public class Admin implements Initializable{
     
     @FXML
     private ListView<Kelas> ListDaftarKelas;
+    
     @FXML
     private AnchorPane user;
     
@@ -63,12 +64,14 @@ public class Admin implements Initializable{
     private void backToWelcome(ActionEvent event) throws IOException {
         App.setRoot("Home");
     }
-    private void moveToDetailKelas() throws IOException{
+    
+    @FXML
+    private void moveToDetailKelas(ActionEvent event) throws IOException{
         App.setRoot("DetailKelas");
     }
     
     @FXML
-    private void ubahPassword() throws IOException{
+    private void ubahPassword(ActionEvent event) throws IOException{
         App.setRoot("UbahPassword");
     }
 
@@ -89,18 +92,11 @@ public class Admin implements Initializable{
     @FXML
     private void dosen(ActionEvent event) throws IOException{
         App.setRoot("tambahDosen");
-    }
-//    private void deletedosen(ActionEvent event) throws IOException{
-//        App.setRoot("deleteDosen");
-//    }
+    }    
     
     @FXML
     private void tambahdaneditkelas(ActionEvent event) throws IOException{
         App.setRoot("Matkul");
-    }
-    @FXML
-    private void enroll(ActionEvent event) throws IOException{
-        App.setRoot("enroll");
     }
     
     static String namaMatkul(){

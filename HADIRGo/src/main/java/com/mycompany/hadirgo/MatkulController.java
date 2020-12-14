@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,6 +56,8 @@ public class MatkulController implements Initializable{
     @FXML
     private JFXButton btnBatal;
     @FXML
+    private JFXButton hapus;
+    @FXML
     private TextField IDdosen;
     @FXML
     private ListView<Kelas> listKelas;
@@ -80,6 +84,7 @@ public class MatkulController implements Initializable{
     @FXML
     private void pilihKelas(MouseEvent event) throws IOException{
         btnUpdate.setVisible(true);
+        hapus.setVisible(true);
         btnTambahMatKul.setVisible(false);
         KodeKelas.setEditable(false);
         MataKuliah.setEditable(false);
@@ -92,15 +97,11 @@ public class MatkulController implements Initializable{
     
     @FXML
     private void tambahKelas(ActionEvent event) throws IOException{
-        kodeKelas = KodeKelas.getText();
-        matkul = MataKuliah.getText();
+        kodeKelas = KodeKelas.getText().toUpperCase();
+        matkul = MataKuliah.getText().toUpperCase();
         jam = Integer.parseInt(Jam.getText());
         menit = Integer.parseInt(Menit.getText());
-        idDosen = IDdosen.getText();
-        
-//        if (kodeKelas.equals(daftar.get(0))) {
-//            
-//        }
+        idDosen = IDdosen.getText().toUpperCase();
         
         tambahKelas.insertKelasBaru(kodeKelas, matkul, (byte) jam, (byte)menit, idDosen);
         kembali();
@@ -111,17 +112,29 @@ public class MatkulController implements Initializable{
         matkul = MataKuliah.getText();
         jam = Integer.parseInt(Jam.getText());
         menit = Integer.parseInt(Menit.getText());
-        idDosen = IDdosen.getText();
-        
+        idDosen = IDdosen.getText().toUpperCase();
         
         
         tambahKelas.updateKelas(kodeKelas, matkul, (byte) jam, (byte)menit, idDosen);
+        kembali();
+    }
+    @FXML
+    private void hapusKelas(ActionEvent event) throws IOException{
+        kodeKelas = KodeKelas.getText();
+        matkul = MataKuliah.getText();
+        jam = Integer.parseInt(Jam.getText());
+        menit = Integer.parseInt(Menit.getText());
+        idDosen = IDdosen.getText().toUpperCase();
+        
+        
+        tambahKelas.deleteKelas(kodeKelas);
         kembali();
     }
     
     @FXML
     private void btnBatal(ActionEvent event) throws IOException{
         btnUpdate.setVisible(false);
+        hapus.setVisible(false);
         btnTambahMatKul.setVisible(true);
         KodeKelas.setEditable(true);
         MataKuliah.setEditable(true);

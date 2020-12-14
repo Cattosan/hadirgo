@@ -83,7 +83,6 @@ public class Dosen implements Initializable{
     }
     @FXML
     public void handle(MouseEvent event) throws IOException {
-        System.out.println(ListDaftarKelas.getSelectionModel().getSelectedItem());
         namaKelas = ListDaftarKelas.getSelectionModel().getSelectedItem().getNamaKelas();
         kodeKelas = ListDaftarKelas.getSelectionModel().getSelectedItem().getKodeKelas();
         App.setRoot("Presensi");

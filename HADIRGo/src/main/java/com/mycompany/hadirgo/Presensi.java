@@ -32,12 +32,12 @@ import javafx.scene.image.ImageView;
  * @author KUCI
  */
 public class Presensi implements Initializable {
+    String kodekls;
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
-    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
+    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     ObservableList<String> list = FXCollections.observableArrayList();
     String cmbMingguKe;
-    
     @FXML
     private Label inimatkul;
     
@@ -80,6 +80,15 @@ public class Presensi implements Initializable {
         
     }
     
+    private String user(){
+        if(HadirGoDb.isAdmin(Home.getuser())){
+            kodekls = Admin.kodeKelas;
+        }
+        else{
+            kodekls = Dosen.kodeKelas;
+        }
+     return kodekls;
+    }
     
     private int jumlahPeserta(){
         return peserta.size();
@@ -130,9 +139,7 @@ public class Presensi implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pertemuan();
-//        System.out.println(hasilMinggu());
         inimatkul.setText(Admin.namaMatkul());
-        
         nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
         foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));

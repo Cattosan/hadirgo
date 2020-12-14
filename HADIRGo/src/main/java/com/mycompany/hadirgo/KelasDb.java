@@ -153,7 +153,7 @@ public class KelasDb {
     }
     
     public static void deleteKelas(String kodeKelas){
-        String sql = "DELETE FROM presensi WHERE kodeKelas = ?;";
+        String sql = "DELETE FROM kelas WHERE kodeKelas = ?;";
         try{
             Class.forName("org.sqlite.JDBC");
             try (Connection conn = DriverManager.getConnection(URL)) {
@@ -170,7 +170,7 @@ public class KelasDb {
     }
     
     public void createDosen(String kodeDosen, String namaDosen){
-        String sql = "INSERT INTO dosen (kode_dosen, nama_dosen) \n"
+        String sql = "INSERT INTO dosen (id_dosen, nama_dosen) \n"
                     + "VALUES(?, ?);";
         try{
             //mengakses db
@@ -192,7 +192,7 @@ public class KelasDb {
         }
     }
     
-    public ArrayList<DosenObject> showAllDosen(){
+    public static ArrayList<DosenObject> showAllDosen(){
         var dosenList = new ArrayList<DosenObject>();
         String sql = "SELECT * from dosen;";
         
@@ -205,8 +205,8 @@ public class KelasDb {
                 
                 while(resultSet.next()){
                     dosenList.add(new DosenObject(
-                            resultSet.getString("idDosen"),
-                            resultSet.getString("namaDosen")
+                            resultSet.getString("id_Dosen"),
+                            resultSet.getString("nama_Dosen")
                     ));
                 }
                 
