@@ -152,6 +152,23 @@ public class KelasDb {
         }
     }
     
+    public static void deleteKelas(String kodeKelas){
+        String sql = "DELETE FROM presensi WHERE kodeKelas = ?;";
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try (Connection conn = DriverManager.getConnection(URL)) {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, kodeKelas);
+                
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            }
+        } catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    
     public void createDosen(String kodeDosen, String namaDosen){
         String sql = "INSERT INTO dosen (kode_dosen, nama_dosen) \n"
                     + "VALUES(?, ?);";
