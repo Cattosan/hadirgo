@@ -39,6 +39,25 @@ public class PresensiDb {
         }
     }
     
+    public void absen_mahasiswa(String kodeKelas, String nim, byte pertemuanKe){
+        String sql = "DELETE FROM presensi WHERE kodeKelas = ? AND nim = ? AND pertemuanKe = ?;";
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try (Connection conn = DriverManager.getConnection(URL)) {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, kodeKelas);
+                preparedStatement.setString(2, nim);
+                preparedStatement.setByte(3, pertemuanKe);
+                
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            }
+        } catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    
     public boolean isMahasiswaHadir(String kodeKelas, int pertemuan){
         String sql = "SELECT * from presensi where kodeKelas = ? AND pertemuanKe = ?";
         
