@@ -10,10 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,31 +18,37 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
+//import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
  * @author KUCI
  */
-public class Presensi implements Initializable {
-    String kodekls;
+public class Presensi implements Initializable{
+    private int index;
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
-    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
+    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     ObservableList<String> list = FXCollections.observableArrayList();
     String cmbMingguKe;
+    public Button btnhadir2 = new Button("Hadir");
+    
+
     @FXML
     private Label inimatkul;
     
     @FXML
-    private TableView<Mahasiswa> tabPresensi;
+    private ComboBox<String> mingguPertemuan;
     
     @FXML
-    private ComboBox<String> mingguPertemuan;
+    private TableView<Mahasiswa> tabPresensi;
     
     @FXML
     private TableColumn<Mahasiswa, Integer> nomor;
@@ -80,15 +83,6 @@ public class Presensi implements Initializable {
         
     }
     
-    private String user(){
-        if(HadirGoDb.isAdmin(Home.getuser())){
-            kodekls = Admin.kodeKelas;
-        }
-        else{
-            kodekls = Dosen.kodeKelas;
-        }
-     return kodekls;
-    }
     
     private int jumlahPeserta(){
         return peserta.size();
@@ -100,6 +94,10 @@ public class Presensi implements Initializable {
             coba.add(peserta.get(i));
         }
         return coba;
+    }
+    
+    public String toString(Mahasiswa mhs){
+        return "" + mhs.toString();
     }
     
     private void pertemuan(){
@@ -115,6 +113,7 @@ public class Presensi implements Initializable {
        System.out.println(hasilMinggu());
        iniYangHadir();
     }
+    
     private int hasilMinggu(){
         StringBuilder sb = new StringBuilder();
         for(Character c : cmbMingguKe.toCharArray()){
@@ -136,16 +135,86 @@ public class Presensi implements Initializable {
             System.out.println("ndak jalan");
         }
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pertemuan();
+        String kodek = Admin.kodeKelas;
+        Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnHadir = new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>>(){
+            @Override
+            public TableCell<Mahasiswa, String> call(final TableColumn<Mahasiswa, String> param) {
+                final TableCell<Mahasiswa, String> cell = new TableCell<Mahasiswa, String>(){
+                    
+                    {
+                        btnhadir2.setOnAction((ActionEvent event) -> {
+                            Mahasiswa mhs = getTableView().getItems().get(getIndex());
+                            btnhadir2.setStyle("-fx-background-color: #42ff8e");
+                            btnhadir2.setDisable(true);
+                            PresensiDb.presensi_mahasiswa(Admin.kodeKelas, mhs.getNim().toString(), (byte) hasilMinggu());
+                            //btnabsen2.setStyle("none");
+                            //btnabsen2.setDisable(false);
+                            System.out.println("MAHASISWA: " + mhs.getNama().toString() + " HADIR NJIR");
+                            System.out.println("MAHASISWA: " + mhs.getNim().toString() + " HADIR NJIR");
+                        });
+                    }
+                    
+                                        
+                    @Override
+                    public void updateItem(String item, boolean empty){
+                        super.updateItem(item, empty);
+                        if(empty){
+                            setGraphic(null);
+                        }
+                        else{
+                            setGraphic(btnhadir2);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        
+        Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnAbsen = new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>>(){
+            @Override
+            public TableCell<Mahasiswa, String> call(final TableColumn<Mahasiswa, String> param) {
+                final TableCell<Mahasiswa, String> cell = new TableCell<Mahasiswa, String>(){
+                    public Button btnabsen2 = new Button("Absen");
+                    {
+                        btnabsen2.setOnAction((ActionEvent event) -> {
+                            Mahasiswa mhs = getTableView().getItems().get(getIndex());
+                            btnabsen2.setStyle("-fx-background-color: #ff5f42");
+                            btnabsen2.setDisable(true);
+                            //btnhadir2.setStyle("none");
+                            //btnhadir2.setDisable(false);
+                            System.out.println("Mahasiswa: " + mhs.getNama().toString() + " ABSENNNN");
+                        });
+                    }
+                    
+                                        
+                    @Override
+                    public void updateItem(String item, boolean empty){
+                        super.updateItem(item, empty);
+                        if(empty){
+                            setGraphic(null);
+                        }
+                        else{
+                            setGraphic(btnabsen2);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        
         inimatkul.setText(Admin.namaMatkul());
+//      ImageView fotoMhs = new ImageView(new Image(this.getClass().getResourceAsStream("./foto.jpg")));
         nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
+        foto.setPrefWidth(80);
         foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
-        btnHadir.setCellValueFactory(new PropertyValueFactory<>("btnHadir"));
-        btnAbsen.setCellValueFactory(new PropertyValueFactory<>("btnAbsen"));
+        btnHadir.setCellFactory(colBtnHadir);
+        btnAbsen.setCellFactory(colBtnAbsen);
         pin.setCellValueFactory(new PropertyValueFactory<>("pin"));
         tabPresensi.setItems(peserta());
     }    

@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class PresensiDb {
     private static final String URL = "jdbc:sqlite:admin.db";
     
-    public void presensi_mahasiswa(String kodeKelas, String nim, byte pertemuanKe){
+    public static void presensi_mahasiswa(String kodeKelas, String nim, byte pertemuanKe){
         String sql = "INSERT INTO presensi (kodeKelas, nim, pertemuanKe) \n"
                     + " VALUES(?, ?, ?);";
         try{

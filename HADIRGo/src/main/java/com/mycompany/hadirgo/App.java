@@ -22,27 +22,25 @@ public class App extends Application {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/hadirgo2.png")));
         stage.setTitle("Hadir Go!");
         stage.initStyle(StageStyle.UNDECORATED);
-        
-        BorderPane root = new BorderPane();
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+        scene = new Scene(loadFXML("Home"), 640, 425);
+        stage.setScene(scene);
+        stage.show();
+        
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
-        
-        scene = new Scene(loadFXML("Home"), 640, 425);
-        stage.setScene(scene);
-        stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
