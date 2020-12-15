@@ -262,7 +262,7 @@ public class KelasDb {
         return mahasiswa;
     }
     
-    public void showReportHadir(String kodeMatkul, String namaMatkul, int pertemuan){
+    public static void showReportHadir(String kodeMatkul, String namaMatkul, int pertemuan){
         HashMap hashmap = new HashMap<String, Object>();
         hashmap.put("kodeKelas", kodeMatkul);
         hashmap.put("namaMatkul", namaMatkul);
@@ -272,17 +272,19 @@ public class KelasDb {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:admin.db");
             JasperReport jasperReport = JasperCompileManager.compileReport(".\\src\\main\\resources\\report\\HadirReport.jrxml");
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hashmap, conn);
-            JasperViewer.viewReport(jasperPrint);
-            File pdf = new File(FILE_REPORT_PATH + fileNameReport());
-            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
+            JasperViewer.viewReport(jasperPrint, false);
+//            File pdf = new File(FILE_REPORT_PATH + fileNameReport());
+//            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
             
             conn.close();
+            return;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return;
     }
     
-    public String fileNameReport(){
+    public static String fileNameReport(){
         String fileName = "Report - ";
         DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
         fileName += df.format(new Date()) + ".pdf";

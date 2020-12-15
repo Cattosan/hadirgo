@@ -32,14 +32,24 @@ import javafx.util.Callback;
  * @author KUCI
  */
 public class Presensi implements Initializable{
-    private int index;
-    private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
-    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(Admin.kodeKelas);
+    
+    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     ObservableList<String> list = FXCollections.observableArrayList();
-    String cmbMingguKe;
+    String cmbMingguKe = "Minggu ke-1";
+    String kodekls;
     public Button btnhadir2 = new Button("Hadir");
     
+    private String user(){
+        if(HadirGoDb.isAdmin(Home.getuser())){
+            kodekls = Admin.kodeKelas;
+        }
+        else{
+            kodekls = Dosen.kodeKelas;
+        }
+        return kodekls;
+    }
+
 
     @FXML
     private Label inimatkul;
@@ -227,5 +237,10 @@ public class Presensi implements Initializable{
         else{
             App.setRoot("Dosen");
         }
+    }
+    
+    @FXML
+    private void showReport(ActionEvent event) throws IOException{
+        KelasDb.showReportHadir(Admin.kodeKelas, Admin.namaKelas, hasilMinggu());
     }
 }
