@@ -273,8 +273,8 @@ public class KelasDb {
             JasperReport jasperReport = JasperCompileManager.compileReport(".\\src\\main\\resources\\report\\HadirReport.jrxml");
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hashmap, conn);
             JasperViewer.viewReport(jasperPrint, false);
-//            File pdf = new File(FILE_REPORT_PATH + fileNameReport());
-//            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
+            File pdf = new File(FILE_REPORT_PATH + fileNameReport());
+            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
             
             conn.close();
             return;

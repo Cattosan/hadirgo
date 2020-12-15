@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
@@ -32,23 +33,13 @@ import javafx.util.Callback;
  * @author KUCI
  */
 public class Presensi implements Initializable{
-    
-    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
+    List<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     ObservableList<String> list = FXCollections.observableArrayList();
     String cmbMingguKe = "Minggu ke-1";
     String kodekls;
     public Button btnhadir2 = new Button("Hadir");
     
-    private String user(){
-        if(HadirGoDb.isAdmin(Home.getuser())){
-            kodekls = Admin.kodeKelas;
-        }
-        else{
-            kodekls = Dosen.kodeKelas;
-        }
-        return kodekls;
-    }
 
 
     @FXML
@@ -85,6 +76,9 @@ public class Presensi implements Initializable{
     private TableColumn<Mahasiswa, Object> pin;
     
     @FXML
+    private TextField boxPencarian;
+    
+    @FXML
     private void hadir(ActionEvent event) throws IOException{
         
     }
@@ -93,6 +87,15 @@ public class Presensi implements Initializable{
         
     }
     
+    private String user(){
+        if(HadirGoDb.isAdmin(Home.getuser())){
+            kodekls = Admin.kodeKelas;
+        }
+        else{
+            kodekls = Dosen.kodeKelas;
+        }
+        return kodekls;
+    }
     
     private int jumlahPeserta(){
         return peserta.size();
@@ -146,9 +149,29 @@ public class Presensi implements Initializable{
         }
     }
     
+    private ObservableList<Mahasiswa> filterlist(List<Mahasiswa> list, String cari){
+        List<Mahasiswa> filteredList = new ArrayList<>();
+        for(Mahasiswa mahasiswa : list){
+            if(pencarianFunct(mahasiswa, cari)){
+                filteredList.add(mahasiswa);
+            }
+        }
+        return FXCollections.observableList(filteredList);
+    }
+    
+    private boolean pencarianFunct(Mahasiswa mahasiswa, String cari){
+        return mahasiswa.getNama().toLowerCase().contains(boxPencarian.getText().toLowerCase()) ||
+                mahasiswa.getNim().toLowerCase().contains(boxPencarian.getText().toLowerCase());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pertemuan();
+        
+         boxPencarian.textProperty().addListener((o) -> {
+            tabPresensi.setItems(filterlist(peserta, kodekls));
+        });
+        
         String kodek = Admin.kodeKelas;
         Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnHadir = new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>>(){
             @Override
