@@ -56,6 +56,11 @@ public class Admin implements Initializable{
     @FXML
     private AnchorPane user;
     
+    @FXML
+    private void batalCari(ActionEvent event) throws IOException{
+        boxPencarian.clear();
+    }
+    
     public int sizekelas(){
         return daftar2.size();
     }
@@ -98,10 +103,6 @@ public class Admin implements Initializable{
         App.setRoot("Matkul");
     }
     
-    @FXML
-    private void batalCari(ActionEvent event) throws IOException{
-        boxPencarian.clear();
-    }
     
     static String namaMatkul(){
         return namaKelas;

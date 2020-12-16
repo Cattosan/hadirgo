@@ -1,0 +1,7 @@
+.list-cell:hadir{
+	-fx-text-fill: green;
+}
+
+.list-cell:absen {
+    -fx-text-fill: red;
+}

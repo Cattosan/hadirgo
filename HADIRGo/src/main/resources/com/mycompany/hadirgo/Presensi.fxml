@@ -24,7 +24,7 @@
                      <font>
                         <Font name="Lato Regular" size="16.0" />
                      </font></Text>
-                  <ComboBox fx:id="mingguPertemuan" layoutX="485.0" layoutY="17.0" onAction="#mingguBtn" prefWidth="150.0" promptText="Pilih Minggu" />
+                  <ComboBox fx:id="mingguPertemuan" layoutX="469.0" layoutY="17.0" onAction="#mingguBtn" prefWidth="150.0" promptText="Pilih Minggu" />
                   <JFXButton fx:id="backbtnmatkul" buttonType="RAISED" layoutX="-1.0" layoutY="4.0" onAction="#backcurrentuser" prefHeight="37.0" prefWidth="82.0" text="Back">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="29.0">
@@ -64,18 +64,18 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView fx:id="tabPresensi" prefHeight="325.0" prefWidth="640.0">
+                  <TableView fx:id="tabPresensi" prefHeight="319.0" prefWidth="630.0">
                     <columns>
                       <TableColumn fx:id="nomor" prefWidth="34.0" resizable="false" text="No." />
                         <TableColumn fx:id="foto" prefWidth="90.0" resizable="false" sortable="false" text="Foto" />
                         <TableColumn fx:id="nim" minWidth="0.0" prefWidth="96.0" resizable="false" text="NIM" />
                       <TableColumn fx:id="namaMhs" prefWidth="250.0" resizable="false" sortable="false" text="Nama" />
-                        <TableColumn fx:id="presensi" minWidth="18.0" prefWidth="126.0" resizable="false" sortable="false" text="Presensi">
+                        <TableColumn fx:id="presensi" minWidth="18.0" prefWidth="131.0" resizable="false" sortable="false" text="Presensi">
                            <columns>
                               <TableColumn fx:id="btnAbsen" prefWidth="60.0" resizable="false" sortable="false" text="Absen" />
                               <TableColumn fx:id="btnHadir" prefWidth="60.0" resizable="false" sortable="false" text="Hadir" />
                            </columns></TableColumn>
-                        <TableColumn fx:id="pin" minWidth="0.0" prefWidth="50.0" resizable="false" sortable="false" text="Pin" />
+                        <TableColumn fx:id="pin" minWidth="0.0" prefWidth="39.0" resizable="false" sortable="false" text="Pin" />
                     </columns>
                   </TableView>
                </children>

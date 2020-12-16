@@ -15,32 +15,38 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 //import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
- * @author KUCI
+ * @author Catttttoooossaaannnnnhhh
  */
 public class Presensi implements Initializable{
-    List<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
+    private int index;
+    private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
+    ArrayList<Mahasiswa> peserta = KelasDb.showDetailKelas(user());
     ObservableList<Mahasiswa> coba = FXCollections.observableArrayList();
     ObservableList<String> list = FXCollections.observableArrayList();
-    String cmbMingguKe = "Minggu ke-1";
+    String cmbMingguKe;
+    String kodek;
     String kodekls;
-    public Button btnhadir2 = new Button("Hadir");
-    
-
+    boolean comboBox;
+    boolean presensih;
+   
 
     @FXML
     private Label inimatkul;
@@ -76,11 +82,12 @@ public class Presensi implements Initializable{
     private TableColumn<Mahasiswa, Object> pin;
     
     @FXML
-    private TextField boxPencarian;
-    
+    private void hadir(ActionEvent event) throws IOException{
+        
+    }
     @FXML
-    private void batalCari(ActionEvent event) throws IOException{
-        boxPencarian.clear();
+    private void absen(ActionEvent event) throws IOException{
+        
     }
     
     private String user(){
@@ -118,9 +125,30 @@ public class Presensi implements Initializable{
     }
     
     public void mingguBtn(ActionEvent event) throws IOException{
-       cmbMingguKe = mingguPertemuan.getSelectionModel().getSelectedItem();
-       System.out.println(hasilMinggu());
-       iniYangHadir();
+        cmbMingguKe = mingguPertemuan.getSelectionModel().getSelectedItem();
+        System.out.println(hasilMinggu());
+        iniYangHadir();
+        checkiecheckie(kodek, hasilMinggu());
+        namaMhs.setCellFactory(new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> (){
+            @Override
+            public TableCell<Mahasiswa, String> call(TableColumn<Mahasiswa, String> param) {
+                return new TableCell<Mahasiswa, String>(){
+                    @Override
+                    public void updateItem(String item, boolean empty){
+                        if(presensih){
+                            this.setTextFill(Color.GREEN);
+                            setText(item);
+                        }
+                        else{
+                            this.setTextFill(Color.RED);
+                            setText(item);
+                        }
+                    }
+                };
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        System.out.println(presensih);
     }
     
     private int hasilMinggu(){
@@ -137,57 +165,58 @@ public class Presensi implements Initializable{
     private void iniYangHadir(){
         boolean pesertaHadir=false;
         PresensiDb pakeYangIni = new PresensiDb();
+        
         if(pakeYangIni.isMahasiswaHadir(Admin.kodeKelas, hasilMinggu())) {
             System.out.println("Kalo ini jalan");            
         }
         else{
             System.out.println("ndak jalan");
         }
+        
     }
     
-    private ObservableList<Mahasiswa> filterlist(List<Mahasiswa> list, String cari){
-        List<Mahasiswa> filteredList = new ArrayList<>();
-        for(Mahasiswa mahasiswa : list){
-            if(pencarianFunct(mahasiswa, cari)){
-                filteredList.add(mahasiswa);
-            }
+    private boolean checkBoxCheck(){
+        if(mingguPertemuan.getSelectionModel().isEmpty()){
+            return false;
         }
-        return FXCollections.observableList(filteredList);
+        else{
+            return true;
+        }
     }
     
-    private boolean pencarianFunct(Mahasiswa mahasiswa, String cari){
-        return mahasiswa.getNama().toLowerCase().contains(boxPencarian.getText().toLowerCase()) ||
-                mahasiswa.getNim().toLowerCase().contains(boxPencarian.getText().toLowerCase());
+    private void error(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/hadirgo2.png")));
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Harap Pilih Minggu Perkuliahan Terlebih Dahulu");
+        alert.showAndWait();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        pertemuan();
-        
-         boxPencarian.textProperty().addListener((o) -> {
-            tabPresensi.setItems(filterlist(peserta, kodekls));
-        });
-        
-        String kodek = Admin.kodeKelas;
+    private void Buttons(){
         Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnHadir = new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>>(){
             @Override
             public TableCell<Mahasiswa, String> call(final TableColumn<Mahasiswa, String> param) {
                 final TableCell<Mahasiswa, String> cell = new TableCell<Mahasiswa, String>(){
-                    
+                    private Button btnhadir2 = new Button("Hadir");
                     {
                         btnhadir2.setOnAction((ActionEvent event) -> {
-                            Mahasiswa mhs = getTableView().getItems().get(getIndex());
-                            btnhadir2.setStyle("-fx-background-color: #42ff8e");
-                            btnhadir2.setDisable(true);
-                            PresensiDb.presensi_mahasiswa(Admin.kodeKelas, mhs.getNim().toString(), (byte) hasilMinggu());
-                            //btnabsen2.setStyle("none");
-                            //btnabsen2.setDisable(false);
-                            System.out.println("MAHASISWA: " + mhs.getNama().toString() + " HADIR NJIR");
-                            System.out.println("MAHASISWA: " + mhs.getNim().toString() + " HADIR NJIR");
+                            comboBox = checkBoxCheck();
+                            if(comboBox){
+                                Mahasiswa mhs = getTableView().getItems().get(getIndex());
+                                btnhadir2.setStyle("-fx-background-color: #42ff8e");
+                                btnhadir2.setDisable(true);
+                                PresensiDb.presensi_mahasiswa(Admin.kodeKelas, mhs.getNim().toString(), (byte) hasilMinggu());
+                                System.out.println("MAHASISWA: " + mhs.getNama().toString() + mhs.getNim().toString() + " HADIR NJIR");
+                            }
+                            else{
+                                error();
+                            }
                         });
                     }
-                    
-                                        
+
                     @Override
                     public void updateItem(String item, boolean empty){
                         super.updateItem(item, empty);
@@ -203,47 +232,71 @@ public class Presensi implements Initializable{
             }
         };
         
-        Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnAbsen = new Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>>(){
-            @Override
-            public TableCell<Mahasiswa, String> call(final TableColumn<Mahasiswa, String> param) {
-                final TableCell<Mahasiswa, String> cell = new TableCell<Mahasiswa, String>(){
-                    public Button btnabsen2 = new Button("Absen");
-                    {
-                        btnabsen2.setOnAction((ActionEvent event) -> {
+        
+        Callback<TableColumn<Mahasiswa, String>, TableCell<Mahasiswa, String>> colBtnAbsen = (final TableColumn<Mahasiswa, String> param) -> {
+            final TableCell<Mahasiswa, String> cell = new TableCell<Mahasiswa, String>(){
+                private Button btnabsen2 = new Button("Absen");
+                {
+                    btnabsen2.setOnAction((ActionEvent event) -> {
+                        comboBox = checkBoxCheck();
+                        if(comboBox){
                             Mahasiswa mhs = getTableView().getItems().get(getIndex());
                             btnabsen2.setStyle("-fx-background-color: #ff5f42");
                             btnabsen2.setDisable(true);
-                            //btnhadir2.setStyle("none");
-                            //btnhadir2.setDisable(false);
+                            PresensiDb.absen_mahasiswa(Admin.kodeKelas, mhs.getNim().toString(), (byte) hasilMinggu());
                             System.out.println("Mahasiswa: " + mhs.getNama().toString() + " ABSENNNN");
-                        });
-                    }
-                    
-                                        
-                    @Override
-                    public void updateItem(String item, boolean empty){
-                        super.updateItem(item, empty);
-                        if(empty){
-                            setGraphic(null);
                         }
                         else{
-                            setGraphic(btnabsen2);
+                            error();
                         }
+                    });
+                }
+                
+                @Override
+                public void updateItem(String item, boolean empty){
+                    super.updateItem(item, empty);
+                    if(empty){
+                        setGraphic(null);
                     }
-                };
-                return cell;
-            }
+                    else{
+                        setGraphic(btnabsen2);
+                    }
+                }
+            };
+            return cell;
         };
+        btnHadir.setCellFactory(colBtnHadir);
+        btnAbsen.setCellFactory(colBtnAbsen);
+    }
+    
+    private void checkiecheckie(String kode, int minggu){
+        int size = jumlahPeserta();
+        String nimmhs = "71180279";
+        ArrayList<String> daftarnim = new ArrayList<>();
+        daftarnim.clear();
+        for(int i = 0; i<size; i++){
+            daftarnim.add(peserta.get(i).getNim());
+        }
+        PresensiDb pdb = new PresensiDb();
+        for(int i=0; i<size; i++){
+            System.out.println(daftarnim.get(i));
+            presensih = pdb.isMahasiswaIniHadir(kode, daftarnim.get(i), minggu);
+        }
         
+        
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        pertemuan();
+        kodek = user();
+        Buttons();
         inimatkul.setText(Admin.namaMatkul());
-//      ImageView fotoMhs = new ImageView(new Image(this.getClass().getResourceAsStream("./foto.jpg")));
         nomor.setCellValueFactory(new PropertyValueFactory<>("nomor"));
         foto.setPrefWidth(80);
         foto.setCellValueFactory(new PropertyValueFactory<>("objekFoto"));
         namaMhs.setCellValueFactory(new PropertyValueFactory<>("nama"));
         nim.setCellValueFactory(new PropertyValueFactory<>("nim"));
-        btnHadir.setCellFactory(colBtnHadir);
-        btnAbsen.setCellFactory(colBtnAbsen);
         pin.setCellValueFactory(new PropertyValueFactory<>("pin"));
         tabPresensi.setItems(peserta());
     }    

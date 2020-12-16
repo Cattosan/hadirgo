@@ -18,12 +18,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="namaDosen" layoutX="170.0" layoutY="121.0" />
-                  <TextField fx:id="idDosen" layoutX="170.0" layoutY="161.0" />
-                  <JFXButton fx:id="tambah" onAction="#tmbhDosen" layoutX="260.0" layoutY="209.0" style="-fx-background-color: #2200ff;" text="Tambah" textFill="#f8f8f8" />
-                  <Label layoutX="79.0" layoutY="125.0" text="Nama Dosen" />
-                  <Label layoutX="99.0" layoutY="165.0" text="ID Dosen" />
-                  <ListView fx:id="listDosen" layoutX="378.0" prefHeight="355.0" prefWidth="260.0" />
+                  <TextField fx:id="namaDosen" layoutX="151.0" layoutY="121.0" />
+                  <TextField fx:id="idDosen" layoutX="151.0" layoutY="161.0" />
+                  <JFXButton fx:id="tambah" layoutX="238.0" layoutY="209.0" onAction="#tmbhDosen" style="-fx-background-color: #2200ff;" text="Tambah" textFill="#f8f8f8" />
+                  <Label layoutX="60.0" layoutY="125.0" text="Nama Dosen" />
+                  <Label layoutX="80.0" layoutY="165.0" text="ID Dosen" />
+                  <ListView fx:id="listDosen" layoutX="317.0" layoutY="3.0" prefHeight="349.0" prefWidth="307.0" />
                </children>
             </AnchorPane>
         </items>
