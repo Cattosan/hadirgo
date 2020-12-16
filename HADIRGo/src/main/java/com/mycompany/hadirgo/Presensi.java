@@ -79,12 +79,8 @@ public class Presensi implements Initializable{
     private TextField boxPencarian;
     
     @FXML
-    private void hadir(ActionEvent event) throws IOException{
-        
-    }
-    @FXML
-    private void absen(ActionEvent event) throws IOException{
-        
+    private void batalCari(ActionEvent event) throws IOException{
+        boxPencarian.clear();
     }
     
     private String user(){

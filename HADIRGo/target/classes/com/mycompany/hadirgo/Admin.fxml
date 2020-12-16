@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="user" prefHeight="404.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hadirgo.Admin">
@@ -40,7 +42,17 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="484.0">
                      <children>
-                        <ListView fx:id="ListDaftarKelas" layoutY="-2.0" onMouseClicked="#handle" prefHeight="402.0" prefWidth="485.0" />
+                        <ListView fx:id="ListDaftarKelas" layoutY="39.0" onMouseClicked="#handle" prefHeight="361.0" prefWidth="485.0" />
+                        <StackPane alignment="CENTER_RIGHT" layoutX="158.0" layoutY="8.0" prefHeight="0.0" prefWidth="170.0">
+                           <children>
+                              <TextField fx:id="boxPencarian" alignment="CENTER" prefHeight="32.0" prefWidth="344.0" promptText="Cari Kelas" />
+                              <JFXButton fx:id="btnHapusPencarian" onAction="#batalCari" prefHeight="14.0" prefWidth="18.0" style="-fx-background-color: #ff0000;" text="X" textFill="#fcf9f9">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </StackPane>
                      </children>
                   </AnchorPane>
               </content>

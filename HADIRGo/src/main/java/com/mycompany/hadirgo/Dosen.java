@@ -1,25 +1,25 @@
 package com.mycompany.hadirgo;
 
 import com.jfoenix.controls.JFXButton;
+import static com.mycompany.hadirgo.Admin.namaKelas;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-//import javafx.event.Event;
-//import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class Dosen implements Initializable{
     private ObservableList<Kelas> daftarKelas = FXCollections.observableArrayList();
-    private ArrayList<Kelas> daftar2 = KelasDb.showKelas(Home.getuser());
+    private List<Kelas> daftar2 = KelasDb.showKelas(Home.getuser());
     public static String namaKelas;
     public static String kodeKelas;
 
@@ -45,7 +45,10 @@ public class Dosen implements Initializable{
     private JFXButton hapusdsn;
 
     @FXML
-    private Button test;
+    private TextField boxPencarian;
+
+    @FXML
+    private JFXButton btnHapusPencarian;
     
     @FXML
     private ListView<Kelas> ListDaftarKelas;
@@ -75,12 +78,6 @@ public class Dosen implements Initializable{
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        labeluser.setText(Home.getuser());
-        listKelas();
-        ListDaftarKelas.setItems(daftarKelas);
-    }
     @FXML
     public void handle(MouseEvent event) throws IOException {
         namaKelas = ListDaftarKelas.getSelectionModel().getSelectedItem().getNamaKelas();
@@ -88,7 +85,38 @@ public class Dosen implements Initializable{
         App.setRoot("Presensi");
     }
     
+    @FXML
+    private void batalCari(ActionEvent event) throws IOException{
+        boxPencarian.clear();
+    }
+    
     static String namaMatkul(){
         return namaKelas;
+    }
+    
+    private ObservableList<Kelas> filterlist(List<Kelas> list, String cari){
+        List<Kelas> filteredList = new ArrayList<>();
+        for(Kelas kelas : list){
+            if(pencarianFunct(kelas, cari)){
+                filteredList.add(kelas);
+            }
+        }
+        return FXCollections.observableList(filteredList);
+    }
+    
+    private boolean pencarianFunct(Kelas kelas, String cari){
+        return kelas.getKodeKelas().toLowerCase().contains(boxPencarian.getText().toLowerCase()) ||
+                kelas.getNamaKelas().toLowerCase().contains(boxPencarian.getText().toLowerCase());
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        labeluser.setText(Home.getuser());
+        listKelas();
+        ListDaftarKelas.setItems(daftarKelas);
+        
+        boxPencarian.textProperty().addListener((o) -> {
+            ListDaftarKelas.setItems(filterlist(daftarKelas, namaKelas));
+        });
     }
 }
