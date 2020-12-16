@@ -45,6 +45,7 @@ public class Presensi implements Initializable{
     String cmbMingguKe;
     String kodek;
     String kodekls;
+    String namakls;
     boolean comboBox;
     boolean presensih;
    
@@ -104,6 +105,16 @@ public class Presensi implements Initializable{
         return kodekls;
     }
     
+    private String namakelas(){
+        if(HadirGoDb.isAdmin(Home.getuser())){
+            namakls = Admin.namaKelas;
+        }
+        else{
+            namakls = Dosen.namaKelas;
+        }
+        return namakls;
+    }
+    
     private int jumlahPeserta(){
         return peserta.size();
     }
@@ -128,6 +139,7 @@ public class Presensi implements Initializable{
         mingguPertemuan.setItems(list);
     }
     
+    @FXML
     private void batalCari(ActionEvent event) throws IOException{
         boxPencarian.clear();
     }
@@ -193,6 +205,17 @@ public class Presensi implements Initializable{
     }
     
     private void error(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/hadirgo2.png")));
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Harap Pilih Minggu Perkuliahan Terlebih Dahulu");
+        alert.showAndWait();
+    }
+    
+    private void errorreport(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -294,9 +317,28 @@ public class Presensi implements Initializable{
         
     }
     
+    private ObservableList<Mahasiswa> filterlist(List<Mahasiswa> list, String cari){
+        List<Mahasiswa> filteredList = new ArrayList<>();
+        for(Mahasiswa mahasiswa : list){
+            if(pencarianFunct(mahasiswa, cari)){
+                filteredList.add(mahasiswa);
+            }
+        }
+        return FXCollections.observableList(filteredList);
+    }
+    
+    private boolean pencarianFunct(Mahasiswa mahasiswa, String cari){
+        return mahasiswa.getNama().toLowerCase().contains(boxPencarian.getText().toLowerCase()) ||
+                mahasiswa.getNim().toLowerCase().contains(boxPencarian.getText().toLowerCase());
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pertemuan();
+        boxPencarian.textProperty().addListener((o) -> {
+            tabPresensi.setItems(filterlist(peserta, kodekls));
+        });
         kodek = user();
         Buttons();
         inimatkul.setText(Admin.namaMatkul());
@@ -321,6 +363,12 @@ public class Presensi implements Initializable{
     
     @FXML
     private void showReport(ActionEvent event) throws IOException{
-        KelasDb.showReportHadir(Admin.kodeKelas, Admin.namaKelas, hasilMinggu());
+        comboBox = checkBoxCheck();
+        if(comboBox){
+            KelasDb.showReportHadir(user(), namakelas(), hasilMinggu());
+        }
+        else{
+            errorreport();
+        }
     }
 }
