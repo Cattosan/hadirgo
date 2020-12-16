@@ -153,6 +153,7 @@ public class MatkulController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnUpdate.setVisible(false);
+        hapus.setVisible(false);
         listKelas();
         listKelas.setItems(daftarKelas);
     }
