@@ -124,6 +124,10 @@ public class Presensi implements Initializable{
         mingguPertemuan.setItems(list);
     }
     
+    private void batalCari(ActionEvent event) throws IOException{
+        boxPencarian.clear();
+    }
+    
     public void mingguBtn(ActionEvent event) throws IOException{
         cmbMingguKe = mingguPertemuan.getSelectionModel().getSelectedItem();
         System.out.println(hasilMinggu());
